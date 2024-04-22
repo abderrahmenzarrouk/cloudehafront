@@ -13,6 +13,9 @@ import { ReclamationtechniquesComponent } from './home/views/admin/reclamationte
 import { ReclamationeducativesComponent } from './home/views/admin/reclamationeducatives/reclamationeducatives.component';
 import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
 import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
+import { BackComponent } from './home/views/back/back.component';
+import { EventsComponent } from './home/views/events/events.component';
+import { NotFoundComponent } from './home/views/not-found/not-found.component';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
@@ -28,7 +31,9 @@ const routes: Routes = [
   { path: 'reclamations-techniques', component: ReclamationtechniquesComponent },
   { path: 'reclamations-educatives', component: ReclamationeducativesComponent },
   { path: 'profile-tuteur', component: ProfiletuteurComponent },
-  { path: 'reclamation-tuteur', component: ReclamationtuteurComponent }
+  { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
+  { path: 'back', component: BackComponent, children:[{path: 'events', component: EventsComponent}] },
+  { path:"**",component: NotFoundComponent}
  
 ];
 
