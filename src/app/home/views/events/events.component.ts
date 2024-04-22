@@ -31,4 +31,18 @@ export class EventsComponent {
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
   }
+  deleteEvent(id: any) {
+    this.es.deleteEvent(id).subscribe(
+      () => {
+        console.log("Événement supprimé");
+        // Reloading the page inside the subscribe block ensures that it will happen after the deletion is successful
+        window.location.reload();
+      },
+      error => {
+        console.error("Erreur lors de la suppression de l'événement:", error);
+        // You can handle the error here, such as displaying an error message
+      }
+    );
+}
+
 }
