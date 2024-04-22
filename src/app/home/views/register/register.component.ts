@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
         formData.append('prenom', registerForm.value.prenom);
         formData.append('age', registerForm.value.age);
         formData.append('tel', registerForm.value.telephone);
+        formData.append('specialite', registerForm.value.specialty);
         formData.append('role', this.Value.toString());
     
         const url = 'http://localhost:8083/api/v1/auth/registration';

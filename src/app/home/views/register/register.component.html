@@ -173,6 +173,17 @@
 										<input type="text" class="form-control border-0 bg-light rounded-end ps-1" placeholder="Num de telephone" id="telephone" [(ngModel)]="registerForm.value.telephone" name="telephone">
 									</div>
 								</div>
+									<!-- Specialty -->
+								<div class="col-md-6">
+									<label class="form-label">Specialité</label>
+									<select class="form-control" [(ngModel)]="registerForm.value.specialty" name="specialty">
+										<option value="Arctic">Arctic</option>
+										<option value="DS">DS</option>
+										<option value="BI">BI</option>
+										<option value="Nids">Nids</option>
+										<option value="Twin">Twin</option>
+									</select>
+								</div>
 								<!-- Password -->
 								<div class="mb-4">
 									<label for="inputPassword5" class="form-label">MOT de passe *</label>

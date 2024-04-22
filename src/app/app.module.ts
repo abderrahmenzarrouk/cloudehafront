@@ -11,6 +11,15 @@ import { LoginComponent } from './home/views/login/login.component';
 import { ProfileetudiantComponent } from './home/views/etudiant/profileetudiant/profileetudiant.component';
 import { ProfileadminComponent } from './home/views/admin/profileadmin/profileadmin.component';
 import { AjoutertuteurComponent } from './home/views/admin/ajoutertuteur/ajoutertuteur.component';
+import { ListtuteurComponent } from './home/views/admin/listtuteur/listtuteur.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReclamationformComponent } from './home/views/etudiant/reclamationform/reclamationform.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ListreclamationsComponent } from './home/views/etudiant/listreclamations/listreclamations.component';
+import { ReclamationtechniquesComponent } from './home/views/admin/reclamationtechniques/reclamationtechniques.component';
+import { ReclamationeducativesComponent } from './home/views/admin/reclamationeducatives/reclamationeducatives.component';
+import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
+import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +29,14 @@ import { AjoutertuteurComponent } from './home/views/admin/ajoutertuteur/ajouter
     LoginComponent,
     ProfileetudiantComponent,
     ProfileadminComponent,
-    AjoutertuteurComponent
+    AjoutertuteurComponent,
+    ListtuteurComponent,
+    ReclamationformComponent,
+    ListreclamationsComponent,
+    ReclamationtechniquesComponent,
+    ReclamationeducativesComponent,
+    ProfiletuteurComponent,
+    ReclamationtuteurComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +44,9 @@ import { AjoutertuteurComponent } from './home/views/admin/ajoutertuteur/ajouter
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

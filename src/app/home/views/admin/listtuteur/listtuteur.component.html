@@ -61,7 +61,7 @@
 				</li>
 
 				<!-- Menu item 3 -->
-				<li class="nav-item"> <a class="nav-link active" routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des Etudiant</a></li>
+				<li class="nav-item"> <a class="nav-link " routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des Etudiant</a></li>
 
 				<!-- Menu item 4 -->
 				<li class="nav-item">
@@ -71,7 +71,7 @@
 					<!-- Submenu -->
 					<ul class="nav collapse flex-column" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
 						<li class="nav-item"> <a class="nav-link" routerLink="/ajouter-tuteur">Ajouter Tuteur</a></li>
-						<li class="nav-item"> <a class="nav-link" routerLink="/list-tuteur">List des Tuteurs</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/list-tuteur">List des tuteurs</a></li>
 						<li class="nav-item"> 
 							<a class="nav-link" href="admin-instructor-request.html">Instructor requests
 								<span class="badge text-bg-success rounded-circle ms-2">2</span>
@@ -359,7 +359,7 @@
 		<!-- Title -->
 		<div class="row">
 			<div class="col-12">
-				<h1 class="h3 mb-2 mb-sm-0">List des Etudiant</h1>
+				<h1 class="h3 mb-2 mb-sm-0">List des Tuteurs</h1>
 			</div>
 		</div>
 			
@@ -416,7 +416,7 @@
 						<div class="row g-4">
 
 							<!-- Card item START -->
-							<div class="col-md-6 col-xxl-4" *ngFor="let user of users">
+							<div class="col-md-6 col-xxl-4" *ngFor="let user of tuteurs">
 								<div class="card bg-transparent border h-100"> 
 									<!-- Card header -->
 									<div class="card-header bg-transparent border-bottom d-flex justify-content-between">
@@ -521,7 +521,7 @@
 								<tbody>
 
 									<!-- Table row -->
-									<tr *ngFor="let user of users">
+									<tr *ngFor="let user of tuteurs">
 										<!-- Table data -->
 										<td>
 											<div class="d-flex align-items-center position-relative">

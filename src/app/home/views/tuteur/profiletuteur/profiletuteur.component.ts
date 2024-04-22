@@ -1,19 +1,16 @@
-  import { HttpClient, HttpHeaders } from '@angular/common/http';
-  import { Component, ElementRef, OnInit } from '@angular/core';
-  import { NgForm } from '@angular/forms';
-  import { Router } from '@angular/router';
-  import { UserService } from 'src/app/home/services/user.service';
-  import Swal from 'sweetalert2';
-  import { MatDialog,MatDialogModule } from '@angular/material/dialog';
-import { ReclamationformComponent } from '../reclamationform/reclamationform.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
-  @Component({
-    selector: 'app-profileetudiant',
-    templateUrl: './profileetudiant.component.html',
-    styleUrls: ['./profileetudiant.component.css']
-  })
-  export class ProfileetudiantComponent implements OnInit{
-    userconnect = JSON.parse(localStorage.getItem("userconnect")!);
+@Component({
+  selector: 'app-profiletuteur',
+  templateUrl: './profiletuteur.component.html',
+  styleUrls: ['./profiletuteur.component.css']
+})
+export class ProfiletuteurComponent implements OnInit{
+  userconnect = JSON.parse(localStorage.getItem("userconnect")!);
     constructor(private router: Router, private http: HttpClient){}
     ngOnInit(): void {
       this.userconnect;
@@ -81,9 +78,4 @@ import { ReclamationformComponent } from '../reclamationform/reclamationform.com
       }
     }
 
- 
- }
-  
-  
-  
-  
+}

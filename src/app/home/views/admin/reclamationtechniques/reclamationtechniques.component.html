@@ -61,7 +61,7 @@
 				</li>
 
 				<!-- Menu item 3 -->
-				<li class="nav-item"> <a class="nav-link active" routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des Etudiant</a></li>
+				<li class="nav-item"> <a class="nav-link " routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des Etudiant</a></li>
 
 				<!-- Menu item 4 -->
 				<li class="nav-item">
@@ -71,7 +71,7 @@
 					<!-- Submenu -->
 					<ul class="nav collapse flex-column" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
 						<li class="nav-item"> <a class="nav-link" routerLink="/ajouter-tuteur">Ajouter Tuteur</a></li>
-						<li class="nav-item"> <a class="nav-link" routerLink="/list-tuteur">List des Tuteurs</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/list-tuteur">List des tuteurs</a></li>
 						<li class="nav-item"> 
 							<a class="nav-link" href="admin-instructor-request.html">Instructor requests
 								<span class="badge text-bg-success rounded-circle ms-2">2</span>
@@ -353,255 +353,123 @@
 	</nav>
 	<!-- Top bar END -->
 
-	<!-- Page main content START -->
-	<div class="page-content-wrapper border">
+    <div class="col-12">
+        <!-- Card START -->
+        <div class="card border bg-transparent rounded-3">
+            <!-- Card header START -->
+            <div class="card-header bg-transparent border-bottom">
+                <h3 class="mb-0">Liste des Réclamation Techniques</h3>
+            </div>
+            <!-- Card header END -->
 
-		<!-- Title -->
-		<div class="row">
-			<div class="col-12">
-				<h1 class="h3 mb-2 mb-sm-0">List des Etudiant</h1>
-			</div>
-		</div>
-			
-		<div class="card bg-transparent">
+            <!-- Card body START -->
+            <div class="card-body">
 
-			<!-- Card header START -->
-			<div class="card-header bg-transparent border-bottom px-0">
-				<!-- Search and select START -->
-				<div class="row g-3 align-items-center justify-content-between">
+                <!-- Search and select START -->
+                <div class="row g-3 align-items-center justify-content-between mb-4">
+                    <!-- Search -->
+                    <div class="col-md-8">
+                        <form class="rounded position-relative">
+                            <input class="form-control pe-5 bg-transparent" type="search" placeholder="Search" aria-label="Search">
+                            <button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
+                        <i class="fas fa-search fs-6 "></i>
+                    </button>
+                        </form>
+                    </div>
 
-					<!-- Search bar -->
-					<div class="col-md-8">
-						<form class="rounded position-relative">
-							<input class="form-control bg-transparent" type="search" placeholder="Search" aria-label="Search" >
-							<button class="bg-transparent p-2 position-absolute top-50 end-0 translate-middle-y border-0 text-primary-hover text-reset" type="submit">
-								<i class="fas fa-search fs-6 "></i>
-							</button>
-						</form>
-					</div>
+                    <!-- Select option -->
+                    <div class="col-md-3">
+                        <!-- Short by filter -->
+                        <form>
+                            <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm">
+                                <option value="">Sort by</option>
+                                <option>Free</option>
+                                <option>Newest</option>
+                                <option>Most popular</option>
+                                <option>Most Viewed</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <!-- Search and select END -->
 
-					<!-- Tab button -->
-					<div class="col-md-3">
-						<!-- Tabs START -->
-						<ul class="list-inline mb-0 nav nav-pills nav-pill-dark-soft border-0 justify-content-end" id="pills-tab" role="tablist">
-							<!-- Grid tab -->
-							<li class="nav-item">
-								<a href="#nav-preview-tab-1" class="nav-link mb-0 me-2 active" data-bs-toggle="tab">
-									<i class="fas fa-fw fa-th-large"></i>
-								</a>
-							</li>
-							<!-- List tab -->
-							<li class="nav-item">
-								<a href="#nav-html-tab-1" class="nav-link mb-0" data-bs-toggle="tab">
-									<i class="fas fa-fw fa-list-ul"></i>
-								</a>
-							</li>
-						</ul>
-						<!-- Tabs end -->
-					</div>
-				</div>
-				<!-- Search and select END -->
-			</div>
-			<!-- Card header END -->
-   
+                <!-- Course list table START -->
+                <div class="table-responsive border-0">
+                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+                        <!-- Table head -->
+                        <thead>
+                            <tr>
+                                <th scope="col" class="border-0 rounded-start">Déscription</th>
+								<th scope="col" class="border-0">Date</th>
+								<th scope="col" class="border-0">Tuteur</th>
+								<th scope="col" class="border-0">Type</th>
+								<th scope="col" class="border-0 rounded-end">Etat</th>
+                            </tr>
+                        </thead>
 
-			<!-- Card body START -->
-			<div class="card-body px-0">
+                        <!-- Table body START -->
+                        <tbody>
+                            <!-- Table item -->
+                            <tr *ngFor="let reclamation of reclamations">
+                                <!-- Course item -->
+                                <td >
+                                    <div class="d-flex align-items-center">
+                                        <!-- Image -->
+                                        <div class="w-60px">
+                                            <img [src]="decodeBase64Image(reclamation.user.image)"  class="rounded" alt="">
+                                        </div>
+                                        <div class="mb-0 ms-2">
+                                            <!-- Title -->
+                                            <h6><a href="#">{{reclamation.description}}</a></h6>
+                                            <!-- Info -->
+                                            <div class="d-sm-flex">
+                                                <p class="h6 fw-light mb-0 small me-3"><i class="fas fa-envelope text-orange me-2"></i>{{reclamation.user.email}}</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- Enrolled item -->
+                                <td class="text-center text-sm-start">{{reclamation.datereclamation}}</td>
+                                <!-- Status item -->
+                                <td>
+                                    <div class="badge bg-success bg-opacity-10 text-primary">{{reclamation.tuteurchoisit}}</div>
+                                </td>
+                                <!-- Price item -->
+                                <td>{{reclamation.typeReclamtion}}</td>
+                                <!-- Action item -->
+                                <td>
+                                    <div class="badge bg-success bg-opacity-10 text-danger" *ngIf="reclamation.etatreclamation === 0">En cours de traitement</div>
+                                    <div class="badge bg-success bg-opacity-10 text-success" *ngIf="reclamation.etatreclamation === 1">Déjà traité</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <!-- Table body END -->
+                    </table>
+                </div>
+                <!-- Course list table END -->
 
-				<!-- Tabs content START -->
-				<div class="tab-content">
-
-					<!-- Tabs content item START -->
-					<div class="tab-pane fade show active" id="nav-preview-tab-1">
-						<div class="row g-4">
-
-							<!-- Card item START -->
-							<div class="col-md-6 col-xxl-4" *ngFor="let user of users">
-								<div class="card bg-transparent border h-100"> 
-									<!-- Card header -->
-									<div class="card-header bg-transparent border-bottom d-flex justify-content-between">
-										<div class="d-sm-flex align-items-center">
-											<!-- Avatar -->
-											<div class="avatar avatar-md flex-shrink-0">
-												<img class="avatar-img rounded-circle" [src]="decodeBase64Image(user.image)" alt="avatar">
-											</div>
-											<!-- Info -->
-											<div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
-												<h5 class="mb-0"><a href="#">{{user.nom}} {{user.prenom}}</a></h5>
-												<span class="text-body small"><i class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Esprit</span>
-											</div>
-										</div>
-
-										<!-- Edit dropdown -->
-										<div class="dropdown text-end">
-											<a href="#" class="btn btn-sm btn-light btn-round small mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
-												<i class="bi bi-three-dots fa-fw"></i>
-											</a>
-											<!-- dropdown button -->
-											<ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
-												<li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit</a></li>
-												<li><a class="dropdown-item" href="#"><i class="bi bi-trash fa-fw me-2"></i>Remove</a></li>
-											</ul>
-										</div>
-									</div>
-
-									<div class="card-body">
-										<!-- Payments -->
-										<div class="d-flex justify-content-between align-items-center mb-3">
-											<div class="d-flex align-items-center">
-												<div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-envelope-fill fa-fw"></i></div>
-												<h6 class="mb-0 ms-2 fw-light">Email</h6>
-											</div>
-											<span class="mb-0 fw-bold">{{user.email}}</span>
-										</div>
-
-										<!-- Total courses -->
-										<div class="d-flex justify-content-between align-items-center mb-3">
-											<div class="d-flex align-items-center">
-												<div class="icon-md bg-purple bg-opacity-10 text-purple rounded-circle flex-shrink-0"><i class="fas fa-book fa-fw"></i></div>
-												<h6 class="mb-0 ms-2 fw-light">Role</h6>
-											</div>
-											<span class="mb-0 fw-bold">{{user.userRole.role}}</span>
-										</div>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-											<div class="d-flex align-items-center">
-												<div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-calendar-fill fa-fw"></i></div>
-												<h6 class="mb-0 ms-2 fw-light">Age</h6>
-											</div>
-											<span class="mb-0 fw-bold">{{user.age}}</span>
-										</div>
-										
-										<!-- Progress -->
-										
-									</div>
-
-									<!-- Card footer -->
-									<div class="card-footer bg-transparent border-top">
-										<div class="d-sm-flex justify-content-between align-items-center">
-											<!-- Rating star -->
-											<h6 class="mb-2 mb-sm-0">
-												<i class="bi bi-telephone fa-fw text-orange me-2"></i><span class="text-body">Num de Téléphone:</span> {{user.tel}}
-											</h6>
-											<!-- Buttons -->
-											<div class="text-end text-primary-hover">
-												<a href="#" class="btn btn-link text-body p-0 mb-0 me-2" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Message" aria-label="Message">
-													<i class="bi bi-envelope-fill"></i>
-												</a>
-												<a href="#" class="btn btn-link text-body p-0 mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Block" aria-label="Block">
-													<i class="fas fa-ban"></i>
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- Card item END -->
-
-						</div>
-					</div>
-					<!-- Tabs content item END -->
-
-					<!-- Tabs content item START -->
-					<div class="tab-pane fade" id="nav-html-tab-1">
-						<div class="table-responsive border-0">
-							<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-								<!-- Table head -->
-								<thead>
-									<tr>
-										<th scope="col" class="border-0 rounded-start">Nom</th>
-										<th scope="col" class="border-0">Email</th>
-										<th scope="col" class="border-0">Téléphone</th>
-										<th scope="col" class="border-0">Role</th>
-										
-										<th scope="col" class="border-0 rounded-end">Action</th>
-									</tr>
-								</thead>
-
-								<!-- Table body START -->
-								<tbody>
-
-									<!-- Table row -->
-									<tr *ngFor="let user of users">
-										<!-- Table data -->
-										<td>
-											<div class="d-flex align-items-center position-relative">
-												<!-- Image -->
-												<div class="avatar avatar-md">
-													<img [src]="decodeBase64Image(user.image)" class="rounded-circle" alt="">
-												</div>
-												<div class="mb-0 ms-3">
-													<!-- Title -->
-													<h6 class="mb-0"><a href="#" class="stretched-link">{{user.nom}} {{user.prenom}}</a></h6>
-													<span class="text-body small"><i class="fas fa-fw fa-map-marker-alt me-1 mt-1"></i>Esprit</span>
-												</div>
-											</div>
-										</td>
-
-										<!-- Table data -->
-										<td>{{user.email}}</td>
-
-										<!-- Table data -->
-										<td class="text-center text-sm-start">
-											<div class="overflow-hidden">
-												<h6 class="mb-0">{{user.tel}}</h6>
-												
-											</div>
-										</td>
-
-										<!-- Table data -->
-										<td>{{user.userRole.role}}</td>
-
-
-										<!-- Table data -->
-										<td>
-											<a href="#" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-												<i class="bi bi-eye"></i>
-											</a>
-											<a href="#" class="btn btn-light btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Message">
-												<i class="bi bi-envelope"></i>
-											</a>
-											<button class="btn btn-light btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Block">
-												<i class="fas fa-ban"></i>
-											</button>
-										</td>
-									</tr>
-
-
-								</tbody>
-								<!-- Table body END -->
-							</table>
-						</div>
-					</div>
-					<!-- Tabs content item END -->
-
-				</div>
-				<!-- Tabs content END -->
-			</div>
-			<!-- Card body END -->
-
-			<!-- Card footer START -->
-			<div class="card-footer bg-transparent pt-0 px-0">
-				<!-- Pagination START -->
-				<div class="d-sm-flex justify-content-sm-between align-items-sm-center">
-					<!-- Content -->
-					<p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
-					<!-- Pagination -->
-					<nav class="d-flex justify-content-center mb-0" aria-label="navigation">
-						<ul class="pagination pagination-sm pagination-primary-soft mb-0 pb-0 px-0">
-							<li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
-							<li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
-							<li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
-						</ul>
-					</nav>
-				</div>
-				<!-- Pagination END -->
-			</div>
-			<!-- Card footer END -->
-		</div>
-	</div>
-	<!-- Page main content END -->
+                <!-- Pagination START -->
+                <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
+                    <!-- Content -->
+                    <p class="mb-0 text-center text-sm-start">Showing 1 to 8 of 20 entries</p>
+                    <!-- Pagination -->
+                    <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+                        <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+                            <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-left"></i></a></li>
+                            <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- Pagination END -->
+            </div>
+            <!-- Card body START -->
+        </div>
+        <!-- Card END -->
+    </div>
 
 </div>
 <!-- Page content END -->

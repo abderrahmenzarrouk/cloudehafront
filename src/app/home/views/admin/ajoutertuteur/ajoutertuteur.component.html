@@ -50,18 +50,18 @@
 				<!-- menu item 2 -->
 				<li class="nav-item">
 					<a class="nav-link" data-bs-toggle="collapse" href="#collapsepage" role="button" aria-expanded="false" aria-controls="collapsepage">
-						<i class="bi bi-basket fa-fw me-2"></i>Courses
+						<i class="bi bi-basket fa-fw me-2"></i>Réclamations
 					</a>
 					<!-- Submenu -->
 					<ul class="nav collapse flex-column" id="collapsepage" data-bs-parent="#navbar-sidebar">
-						<li class="nav-item"> <a class="nav-link" href="admin-course-list.html">All Courses</a></li>
-						<li class="nav-item"> <a class="nav-link" href="admin-course-category.html">Course Category</a></li>
-						<li class="nav-item"> <a class="nav-link" href="admin-course-detail.html">Course Detail</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/reclamations-techniques" > Techniques</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/reclamations-educatives">Educatives</a></li>
+						
 					</ul>
 				</li>
 
 				<!-- Menu item 3 -->
-				<li class="nav-item"> <a class="nav-link " routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des utilisateur</a></li>
+				<li class="nav-item"> <a class="nav-link " routerLink="/profile-admin"><i class="fas fa-user-graduate fa-fw me-2"></i>List des Etudiant</a></li>
 
 				<!-- Menu item 4 -->
 				<li class="nav-item">
@@ -71,7 +71,7 @@
 					<!-- Submenu -->
 					<ul class="nav collapse flex-column" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
 						<li class="nav-item active"> <a class="nav-link" routerLink="/ajouter-tuteur">Ajouter Tuteur</a></li>
-						<li class="nav-item"> <a class="nav-link" href="admin-instructor-detail.html">Instructor Detail</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/list-tuteur">list des tuteurs</a></li>
 						<li class="nav-item"> 
 							<a class="nav-link" href="admin-instructor-request.html">Instructor requests
 								<span class="badge text-bg-success rounded-circle ms-2">2</span>
@@ -235,54 +235,54 @@
 					<h3 class="mb-3 text-white">Ajouter un tuteur</h3>
 					
 					<!-- Form START -->
-					<form class="row g-3 position-relative">
+					<form class="row g-3 position-relative" role="form" #registerForm ="ngForm" (ngSubmit)="register(registerForm)">
+						<div class="mb-4">
+							<label for="fileInput" class="form-label">Photo de profile *</label>
+							<div class="input-group input-group-lg">
+								<span class="input-group-text bg-light rounded-start border-0 text-secondary px-3"><i class="bi bi-envelope-fill"></i></span>
+								<input class="form-control border-0 bg-light rounded-end ps-1" placeholder="file" id="fileInput" type="file" name="file" [(ngModel)]="registerForm.value.file">
+							</div>
+						</div>
 						<!-- First name -->
 						<div class="col-md-6 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">First name <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="firstName">
+							<label class="form-label text-white text-opacity-50">Nom <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" placeholder="Nom" id="nom" [(ngModel)]="registerForm.value.nom" name="nom">
 						</div>
 
 						<!-- Last name -->
 						<div class="col-md-6 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">Last name <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="lastName">
+							<label class="form-label text-white text-opacity-50">Prenom <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" placeholder="Prenom" id="prenom" [(ngModel)]="registerForm.value.prenom" name="prenom">
 						</div>
 
 						<!-- Email -->
 						<div class="col-md-6 bg-dark-input"> 
 							<label class="form-label text-white text-opacity-50">Email <span class="text-danger">*</span></label>
-							<input type="email" class="form-control" id="email">
+							<input type="email" class="form-control" placeholder="E-mail" id="exampleInputEmail1" [(ngModel)]="registerForm.value.email" name="email">
 						</div>
 
 						<!-- Phone number -->
 						<div class="col-md-6 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">Phone number <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="phoneNumber">
+							<label class="form-label text-white text-opacity-50">Téléphone <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" placeholder="Num de telephone" id="telephone" [(ngModel)]="registerForm.value.telephone" name="telephone">
 						</div>
 
 						<!-- Company name -->
 						<div class="col-md-6 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">City <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="companyName">
+							<label class="form-label text-white text-opacity-50">Age <span class="text-danger">*</span></label>
+							<input type="number" class="form-control" placeholder="Age" id="Age" [(ngModel)]="registerForm.value.age" name="age">
 						</div>
 
-						<!-- Company Size -->
 						<div class="col-md-6 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">First language <span class="text-danger">*</span></label>
-							<input type="text" class="form-control" id="companySize">
+							<label class="form-label text-white text-opacity-50">Mot de passe <span class="text-danger">*</span></label>
+							<input type="password" class="form-control" placeholder="*********" id="inputPassword5" [(ngModel)]="registerForm.value.mdp" name="mdp">
 						</div>
-
-						<div class="col-12 bg-dark-input"> 
-							<label class="form-label text-white text-opacity-50">Additional note(s)</label>
-							<textarea class="form-control" rows="3" placeholder=""></textarea>
-						</div>
-
 						<!-- Button -->
 						<div class="col-12 bg-dark-input">
 							<div class="d-grid">
-								<button class="btn btn-lg btn-primary">Ajouter</button>
+								<input class="btn btn-lg btn-primary" (click)="register(registerForm)" value="Ajouter Tuteur">
 							</div>
-							<p class="mb-0 text-white text-opacity-50 small">Field required with <span class="text-danger fw-bold">*</span> are required to complete the demo request</p>
+							
 						</div>
 					</form>
 					<!-- Form END -->

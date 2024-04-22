@@ -25,7 +25,7 @@ export class ProfileadminComponent {
     this.userService.getUsers().subscribe(
       (users: any[]) => {
         console.log(users)
-        this.users = users.filter(user => user.userRole.role !== "Admin");
+        this.users = users.filter(user => user.userRole.role !== "Admin" && user.userRole.role !== "Tuteur"); 
       }
     );
   }
