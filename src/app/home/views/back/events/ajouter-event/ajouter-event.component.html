@@ -1,0 +1,24 @@
+<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+    <div class="mb-3">
+        <label class="form-label">Nom de l'Événement</label>
+        <input type="text" class="form-control" name="nom_event" ngModel required>
+      </div>
+    <div class="mb-3">
+      <label class="form-label">Date de début *</label>
+      <input type="datetime-local" class="form-control" name="date_debut" ngModel required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Date de fin *</label>
+      <input type="datetime-local" class="form-control" name="date_fin" ngModel required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Places disponibles *</label>
+      <input type="number" class="form-control" name="placesDispo" ngModel required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Places restantes *</label>
+      <input type="number" class="form-control" name="placesRestants" ngModel required>
+    </div>
+    <button type="submit" class="btn btn-primary">Ajouter Événement</button>
+  </form>
+  

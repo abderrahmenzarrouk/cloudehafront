@@ -1,3 +1,4 @@
+import { BackModule } from './home/views/back/back.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './home/views/register/register.component';
@@ -14,11 +15,14 @@ import { ReclamationeducativesComponent } from './home/views/admin/reclamationed
 import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
 import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
 import { BackComponent } from './home/views/back/back.component';
-import { EventsComponent } from './home/views/events/events.component';
 import { NotFoundComponent } from './home/views/not-found/not-found.component';
+
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
+  {path:"back",loadChildren:()=>
+
+    import('./home/views/back/back.module').then(m=>(m).BackModule)},
   { path: 'register', component: RegisterComponent },
   { path: 'verifiermail', component: WelcomepageComponent },
   { path: 'login', component: LoginComponent },
@@ -32,8 +36,9 @@ const routes: Routes = [
   { path: 'reclamations-educatives', component: ReclamationeducativesComponent },
   { path: 'profile-tuteur', component: ProfiletuteurComponent },
   { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
-  { path: 'back', component: BackComponent, children:[{path: 'events', component: EventsComponent}] },
   { path:"**",component: NotFoundComponent}
+
+  
  
 ];
 

@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { EventService } from '../../services/event.service';
+import { EventService } from './../../../../services/event.service';
+import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.css']
 })
-export class EventsComponent {
+export class EventsComponent implements OnInit {
   
   events: any[] | undefined;
+  showAddForm: boolean = false;
 
   constructor(private es: EventService) { }
 
@@ -28,9 +29,11 @@ export class EventsComponent {
         }
       );
   }
+
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
   }
+
   deleteEvent(id: any) {
     this.es.deleteEvent(id).subscribe(
       () => {
@@ -43,6 +46,10 @@ export class EventsComponent {
         // You can handle the error here, such as displaying an error message
       }
     );
-}
+  }
 
+
+
+  
+ 
 }

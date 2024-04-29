@@ -19,4 +19,8 @@ export class EventService {
     return this.http.delete<void>(url);
   }
 
+  saveEvent(event: any): Observable<any> {
+    return this.http.post<any>(this.baseUrl, event);
+  }
+  
 }
