@@ -16,7 +16,8 @@ import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profil
 import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
 import { BackComponent } from './home/views/back/back.component';
 import { NotFoundComponent } from './home/views/not-found/not-found.component';
-
+import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
@@ -36,9 +37,9 @@ const routes: Routes = [
   { path: 'reclamations-educatives', component: ReclamationeducativesComponent },
   { path: 'profile-tuteur', component: ProfiletuteurComponent },
   { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
-  { path:"**",component: NotFoundComponent}
-
-  
+  { path:"**",component: NotFoundComponent},
+  { path: 'forgot-password', component: ForgotpasswordComponent },
+  { path: 'reset-password', component: ResetpasswordComponent }
  
 ];
 

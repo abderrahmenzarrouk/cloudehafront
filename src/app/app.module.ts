@@ -23,6 +23,9 @@ import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteu
 import { NotFoundComponent } from './home/views/not-found/not-found.component';
 import { BackModule } from './home/views/back/back.module';
 import { CommonModule } from '@angular/common';
+import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
+import { ResetpasswordformComponent } from './home/view/resetpasswordform/resetpasswordform.component';
+import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,9 @@ import { CommonModule } from '@angular/common';
     ReclamationeducativesComponent,
     ProfiletuteurComponent,
     ReclamationtuteurComponent,
+    ForgotpasswordComponent,
+    ResetpasswordformComponent,
+    ResetpasswordComponent,
     NotFoundComponent
   ],
   imports: [

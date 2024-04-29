@@ -46,13 +46,18 @@ export class LoginComponent implements OnInit  {
         console.log(res);
         localStorage.setItem('userconnect', JSON.stringify(res.user));
         localStorage.setItem('Token', res.token);
-        if (res.user.userRole.role === "Etudiant") {
+        console.log("mdp");
+        console.log(res.user.mdpoubliée);
+        if (res.user.mdpoubliée === 1) {
+          this.router.navigateByUrl('/reset-password');
+        }
+        else if (res.user.userRole.role === "Etudiant") {
           this.router.navigateByUrl('/profile-etudiant');
         }
-        if (res.user.userRole.role === "Admin") {
+        else if (res.user.userRole.role === "Admin") {
           this.router.navigateByUrl('/profile-admin');
         }
-        if (res.user.userRole.role === "Tuteur") {
+        else if (res.user.userRole.role === "Tuteur") {
           this.router.navigateByUrl('/profile-tuteur');
         }
         
