@@ -1,0 +1,15 @@
+/* styles.css (ou styles.scss) */
+
+/* Réduire la taille du tableau */
+.table-container table {
+    width: 80%; /* Réduire la largeur du tableau à 80% de la largeur parente */
+  }
+  
+  /* Placer le tableau en bas de la page */
+  .table-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

@@ -1,0 +1,40 @@
+<div class="container">
+    <h2 class="mb-4">Liste des items</h2>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let item of items">
+            <div class="card mb-4">
+                <img [src]="item.imageUrl" class="card-img-top" alt="Item Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.nom }}</h5>
+                    <p class="card-text">{{ item.description }}</p>
+                    <p class="card-text"><strong>Nombre de points:</strong> {{ item.nombreDePoints }}</p>
+                    <p class="card-text"><strong>Type d'item:</strong> {{ item.typeItem }}</p>
+                    <!-- Vérifier si l'item est de type "documentation" -->
+                    <ng-container *ngIf="item.typeItem !== 'DOCUMENTATION'; else otherType">
+                        <p class="card-text"><strong>Mode:</strong> {{ item.mode }}</p>
+                    </ng-container>
+                    <ng-template #otherType>
+                        <div class="mt-3">
+                            <h6>Commentaires:</h6>
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let commentaire of item.commentaires">{{ commentaire}}</li>
+                            </ul>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .card-img-top {
+        height: 200px; /* Définissez la hauteur souhaitée pour toutes les images */
+        object-fit: cover; /* Pour s'assurer que les images maintiennent leurs proportions */
+    }
+    .card {
+        height: 400px; /* Définissez la hauteur souhaitée pour toutes les cartes */
+    }
+
+</style>
