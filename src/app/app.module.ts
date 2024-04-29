@@ -20,6 +20,9 @@ import { ReclamationtechniquesComponent } from './home/views/admin/reclamationte
 import { ReclamationeducativesComponent } from './home/views/admin/reclamationeducatives/reclamationeducatives.component';
 import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
 import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
+import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
+import { ResetpasswordformComponent } from './home/view/resetpasswordform/resetpasswordform.component';
+import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteu
     ReclamationtechniquesComponent,
     ReclamationeducativesComponent,
     ProfiletuteurComponent,
-    ReclamationtuteurComponent
+    ReclamationtuteurComponent,
+    ForgotpasswordComponent,
+    ResetpasswordformComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,
