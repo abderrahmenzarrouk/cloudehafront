@@ -22,5 +22,10 @@ export class EventService {
   saveEvent(event: any): Observable<any> {
     return this.http.post<any>(this.baseUrl, event);
   }
-  
+  uploadImage(file :any)
+  {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<any>(`http://localhost:8083/upload`, formData);
+  }
 }

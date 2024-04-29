@@ -29,11 +29,6 @@ export class EventsComponent implements OnInit {
         }
       );
   }
-
-  decodeBase64Image(base64Data: string): string {
-    return 'data:image/png;base64,' + base64Data;
-  }
-
   deleteEvent(id: any) {
     this.es.deleteEvent(id).subscribe(
       () => {

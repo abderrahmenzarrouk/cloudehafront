@@ -2,101 +2,54 @@
     <div class="d-flex justify-content-end mb-3">
         <a routerLink="/back/events/ajouterevent" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Add</a>
     </div>
-    <!-- Tabs content START -->
-    <div class="tab-content">
+   <!-- Tabs content START -->
+<div class="tab-content">
 
-        <!-- Tabs content item START -->
-        <div class="tab-pane fade show active" id="nav-preview-tab-1">
-            <div class="row g-4">
+    <!-- Tabs content item START -->
+    <div class="tab-pane fade show active" id="nav-preview-tab-1">
+        <div class="row g-4 justify-content-center align-items-center">
 
-                <!-- Card item START -->
-                <div class="col-md-6 col-xxl-4" *ngFor="let e of events">
-                    <div class="card bg-transparent border h-100"> 
-                        <!-- Card header -->
-                        <div class="card-header bg-transparent border-bottom d-flex justify-content-between">
-                            <div class="d-sm-flex align-items-center">
-                                <!-- Avatar -->
-                           
-                                <!-- Info -->
-                               
-
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-chat-left-text"></i></div>
-                                            <h6 class="mb-0 ms-2 fw-light">Nom de l'Événement</h6>
-                                        </div>
-                                        <span class="mb-0 fw-bold">&nbsp;{{ e.nom_event }}</span>
-                                    </div>
-                                    
-                                    
-                                    
-                                    <!-- Date de début -->
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-calendar2-date"></i></div>
-                                            <h6 class="mb-0 ms-2 fw-light">Date de début</h6>
-                                        </div>
-                                        <span class="mb-0 fw-bold">{{ e.date_debut | date }}</span>
-                                    </div>
-                                
-                                    <!-- Date de fin -->
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-calendar2-date-fill"></i></div>
-                                            <h6 class="mb-0 ms-2 fw-light">Date de fin</h6>
-                                        </div>
-                                        <span class="mb-0 fw-bold">{{ e.date_fin | date }}</span>
-                                    </div>
-                                
-                                    <!-- Places disponibles -->
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-md bg-purple bg-opacity-10 text-purple rounded-circle flex-shrink-0"><i class="fas fa-chair"></i></div>
-                                            <h6 class="mb-0 ms-2 fw-light">Places disponibles</h6>
-                                        </div>
-                                        <span class="mb-0 fw-bold">{{ e.placesDispo }}</span>
-                                    </div>
-                                
-                                    <!-- Places restantes -->
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <div class="d-flex align-items-center">
-                                            <div class="icon-md bg-success bg-opacity-10 text-success rounded-circle flex-shrink-0"><i class="bi bi-people-fill"></i></div>
-                                            <h6 class="mb-0 ms-2 fw-light">Places restantes</h6>
-                                        </div>
-                                        <span class="mb-0 fw-bold">{{ e.placesRestants }}</span>
-                                    </div>
-                                
-                                    <!-- Actions -->
-                                    <div class="dropdown text-end">
-                                        <a href="#" class="btn btn-sm btn-light btn-round small mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-three-dots"></i>
-                                        </a>
-                                        <!-- Dropdown button -->
-                                        <ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
-                                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Modifier</a></li>
-                                            <li><a class="dropdown-item" (click)="deleteEvent(e.id)"><i class="bi bi-trash"></i> Supprimer</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-
-                        <!-- Card footer -->
+            <!-- Card item START -->
+            <div class="col-md-6 col-xxl-4" *ngFor="let e of events">
+                <div class="card bg-transparent border h-100 d-flex flex-column justify-content-center align-items-center"> 
+                    <!-- Card header -->
+                    <div class="card-header bg-transparent border-bottom">
+                        <a href="car-single.html">
+                            <!-- Image de l'événement -->
+                            <img [src]="e.image != null ? e.image : 'assets/default-image.jpg'" class="card-img-top" alt="...">
+                        </a>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body text-center">
+                        <!-- Nom de l'événement -->
+                        <h5 class="card-title mb-3">{{ e.nom_event }}</h5>
+                        <!-- Dates -->
+                        <p class="card-text mb-3"><strong>Date de début:</strong> {{ e.date_debut | date }}</p>
+                        <p class="card-text mb-3"><strong>Date de fin:</strong> {{ e.date_fin | date }}</p>
+                        <!-- Places -->
+                        <p class="card-text mb-3"><strong>Places disponibles:</strong> {{ e.placesDispo }}</p>
+                        <p class="card-text mb-3"><strong>Places restantes:</strong> {{ e.placesRestants }}</p>
+                        <!-- Actions -->
+                        <div class="dropdown text-end">
+                            <a href="#" class="btn btn-sm btn-light btn-round small mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                            <!-- Dropdown button -->
+                            <ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Modifier</a></li>
+                                <li><a class="dropdown-item" (click)="deleteEvent(e.id)"><i class="bi bi-trash"></i> Supprimer</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <!-- Card item END -->
-
             </div>
+            <!-- Card item END -->
+
         </div>
-        <!-- Tabs content item END -->
-
-        <!-- Tabs content item START -->
-        <!-- Tabs content item END -->
-
-                            <!-- Edit dropdown -->
-                            
-                        </div>
-
     </div>
-    <!-- Tabs content END -->
+    <!-- Tabs content item END -->
+
+</div>
+<!-- Tabs content END -->
+
 </div> 
