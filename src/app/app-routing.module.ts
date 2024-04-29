@@ -37,9 +37,9 @@ const routes: Routes = [
   { path: 'reclamations-educatives', component: ReclamationeducativesComponent },
   { path: 'profile-tuteur', component: ProfiletuteurComponent },
   { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
-  { path:"**",component: NotFoundComponent},
   { path: 'forgot-password', component: ForgotpasswordComponent },
-  { path: 'reset-password', component: ResetpasswordComponent }
+  { path: 'reset-password', component: ResetpasswordComponent },
+  { path:"**",component: NotFoundComponent}
  
 ];
 
