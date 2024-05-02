@@ -1,20 +1,5 @@
 /* styles.css (ou styles.scss) */
 
-<<<<<<< HEAD
-/* Réduire la taille du tableau */
-.table-container table {
-    width: 80%; /* Réduire la largeur du tableau à 80% de la largeur parente */
-  }
-  
-  /* Placer le tableau en bas de la page */
-  .table-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-=======
 .container {
   display: flex;
   flex-direction: column;
@@ -58,4 +43,3 @@
   border-radius: 50px;
   padding: 0.25rem 0.75rem;
 }
->>>>>>> master

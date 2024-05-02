@@ -1,56 +1,20 @@
 <div class="container">
   <h2 class="mb-4">Liste des items</h2>
-<<<<<<< HEAD
-  <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-=======
   
   <div class="table-responsive">
     <table class="table table-bordered border-primary">
       <thead class="table-dark">
->>>>>>> master
         <tr>
           <th scope="col">Nom</th>
           <th scope="col">Description</th>
           <th scope="col">Nombre de points</th>
           <th scope="col">Image</th>
           <th scope="col">Type d'item</th>
-<<<<<<< HEAD
-          <th scope="col">mode</th>          
-=======
           <th scope="col">Mode</th>          
->>>>>>> master
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-<<<<<<< HEAD
-        <tr *ngFor="let item of items">
-          <td>{{ item.nom }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.nombreDePoints }}</td>
-          <td>
-            <img [src]="item.imageUrl" class="img-fluid" style="max-height: 100px;">
-          </td>
-          <td>{{ item.typeItem }}</td>
-          <td>{{ item.mode }}</td>
-
-
-          <td>
-            <button class="btn btn-danger mr-2" (click)="deleteItem(item.id)">Supprimer</button>
-            <button class="btn btn-primary">Mettre à jour</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <!-- Bouton "Ajouter un item" -->
-  <div class="text-center mt-3">
-    <button class="btn btn-success" (click)="redirectToNewItemPage()">Ajouter un item</button>
-  </div>
-</div>
-=======
         <ng-container *ngIf="items.length > 0; else noItems">
           <tr *ngFor="let item of items">
             <td>{{ item.nom }}</td>
@@ -99,4 +63,3 @@
     <button class="btn btn-success" (click)="redirectToNewItemPage()">Ajouter un item</button>
   </div>
 </div>
->>>>>>> master
