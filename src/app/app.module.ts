@@ -10,13 +10,24 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import { ListfrontComponent } from './listfront/listfront.component';
+<<<<<<< HEAD
+=======
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { UpdateItemComponent } from './update-item/update-item.component';
+>>>>>>> master
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
     AjouterItemComponent,
+<<<<<<< HEAD
     ListfrontComponent
+=======
+    ListfrontComponent,
+    ItemDetailsComponent,
+    UpdateItemComponent
+>>>>>>> master
   ],
   imports: [
     BrowserModule,

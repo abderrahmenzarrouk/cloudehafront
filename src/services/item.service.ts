@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item } from 'src/models/item.model';
+import { Commentaire } from 'src/models/commentaire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,9 +37,22 @@ export class ItemService {
     const url = `${this.baseUrl}/delete-item/${itemId}`;
     return this.http.delete(url,{ responseType: 'json' });
   }
-  getAllCommentairesByItemId(itemId: number) {
-    return this.http.get(`${this.baseUrl}/${itemId}/getcommentaires`);
+  getAllCommentairesByItemId(itemId: number): Observable<Commentaire[]> {
+    const url = `${this.baseUrl}/${itemId}/getcommentaires`;
+    return this.http.get<Commentaire[]>(url);
+  }
+getItemById(id: number): Observable<Item> {
+  return this.http.get<Item>(`${this.baseUrl}/${id}`);
 }
+updateItem(id: number, newItem: any): Observable<any> {
+  const url = `${this.baseUrl}/${id}`;
+  return this.http.put(url, newItem);
+}
+searchItems(query: string): Observable<Item[]> {
+  let params = { query: query };
+  return this.http.get<Item[]>(`${this.baseUrl}/search`, { params: params });
+}
+
 }
 
 

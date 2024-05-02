@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="text-center">Mise à jour de l'élément</h2>
+          </div>
+          <div class="card-body">
+            <form (ngSubmit)="updateItem()" #itemForm="ngForm">
+              <div class="form-group">
+                <label for="itemName">Nom de l'élément :</label>
+                <input type="text" class="form-control" id="itemName" name="itemName" [(ngModel)]="item.nom" required>
+              </div>
+              <div class="form-group">
+                <label for="itemDescription">Description de l'élément :</label>
+                <textarea class="form-control" id="itemDescription" name="itemDescription" [(ngModel)]="item.description" required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="itemPoints">Nombre de points :</label>
+                <input type="number" class="form-control" id="itemPoints" name="itemPoints" [(ngModel)]="item.nombreDePoints" required>
+              </div>
+              <!-- Autres champs de formulaire pour les autres propriétés de l'élément -->
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

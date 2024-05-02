@@ -10,6 +10,10 @@ import { ItemService } from 'src/services/item.service';
 })
 export class ItemListComponent implements OnInit {
   items: Item[] = [];
+  searchTerm: string = '';
+  numberOfPoints: number | null = null; // Déclarez numberOfPoints pour le filtre
+
+
 
   constructor(private itemService: ItemService, private router: Router) { }
 
@@ -66,4 +70,15 @@ export class ItemListComponent implements OnInit {
       }
     });
   }
+  updateItem(id: number) {
+    // Rediriger vers l'affichage de mise à jour avec l'identifiant de l'élément
+    this.router.navigate(['/update-item', id]);
+  }
+  searchItems(): void {
+    // Appelez la méthode searchItems du service avec le terme de recherche
+    this.itemService.searchItems(this.searchTerm).subscribe(items => {
+      this.items = items;
+    });
+  }
+  
 }

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="item-image-container">
+          <img [src]="item.imageUrl" alt="Item Image" class="img-fluid item-image">
+          <div class="item-image-overlay">
+            <div class="item-image-actions">
+              <button class="btn btn-primary neumorphic-button">
+                <i class="fas fa-share-alt"></i> Partager
+              </button>
+              <button class="btn btn-primary neumorphic-button">
+                <i class="fas fa-download"></i> Télécharger
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="item-details-container">
+          <h2 class="item-title">{{ item.nom }}</h2>
+          <p class="item-description">{{ item.description }}</p>
+          <div class="item-info-group">
+            <p class="item-info-label">Nombre de points:</p>
+            <p class="item-info-value">{{ item.nombreDePoints }}</p>
+          </div>
+          <div class="item-info-group">
+            <p class="item-info-label">Type d'item:</p>
+            <p class="item-info-value">{{ item.typeItem }}</p>
+          </div>
+          <ng-container *ngIf="item.typeItem !== 'DOCUMENTATION'; else otherType">
+            <div class="item-info-group">
+              <p class="item-info-label">Mode:</p>
+              <p class="item-info-value">{{ item.mode }}</p>
+            </div>
+          </ng-container>
+          <ng-template #otherType>
+            <div class="item-comments-container">
+              <h4 class="item-comments-title">Commentaires:</h4>
+              <ul class="list-group item-comments-list">
+                <li class="list-group-item item-comment" *ngFor="let commentaire of item.commentaires">{{ commentaire }}</li>
+              </ul>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
