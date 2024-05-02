@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="text-center mb-4">Ajouter un item</h2>
+  <form [formGroup]="addItemForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nom" class="form-label">Nom:</label>
+      <input type="text" class="form-control" id="nom" formControlName="nom">
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea class="form-control" id="description" formControlName="description"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="nombreDePoints" class="form-label">Nombre de points:</label>
+      <input type="number" class="form-control" id="nombreDePoints" formControlName="nombreDePoints">
+    </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Image:</label>
+      <input type="file" class="form-control" id="image" formControlName="image" (change)="onFileSelected($event)">
+    </div>
+    <div *ngIf="imageUrl">
+      <img [src]="imageUrl" alt="Image sélectionnée">
+    </div>
+    
+    <div class="mb-3">
+      <label for="typeItem" class="form-label">Type d'item:</label>
+      <select class="form-select" id="typeItem" formControlName="typeItem">
+        <option value="FORMATION">FORMATION</option>
+        <option value="DOCUMENTATION">DOCUMENTATION</option>
+      </select>
+    </div>
+
+    <!-- Ajout de la barre de sélection du mode -->
+    <div class="mb-3" *ngIf="addItemForm.get('typeItem')?.value === 'FORMATION'">
+      <label for="mode" class="form-label">Mode:</label>
+      <select class="form-select" id="mode" formControlName="mode">
+        <option value="PRESENT">PRESENT</option>
+        <option value="LIGNE">LIGNE</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+  </form>
+</div>

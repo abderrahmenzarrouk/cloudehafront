@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let item of items">
+        <div class="card neumorphic-card">
+          <div class="card-img-container">
+            <img [src]="item.imageUrl" class="card-img-top" alt="{{ item.nom }}">
+            <div class="card-img-overlay">
+              <button class="btn btn-primary neumorphic-button" (click)="navigateToItemDetails(item)">
+                <i class="fas fa-eye"></i> Voir plus
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ item.nom }}</h5>
+          </div>
+          <!-- Section des commentaires -->
+          <div class="card-footer">
+            <h6>Commentaires :</h6>
+            <ul>
+              <li *ngFor="let commentaire of item.commentaires">
+                {{ commentaire.contenu }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+    .card-img-top {
+        height: 200px; /* Définissez la hauteur souhaitée pour toutes les images */
+        object-fit: cover; /* Pour s'assurer que les images maintiennent leurs proportions */
+    }
+    .card {
+        height: 400px; /* Définissez la hauteur souhaitée pour toutes les cartes */
+    }
+
+</style>

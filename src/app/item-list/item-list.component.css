@@ -1,0 +1,45 @@
+/* styles.css (ou styles.scss) */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ajuster la hauteur selon vos besoins */
+}
+
+.table-responsive {
+  width: 80%;
+  margin-top: 20px;
+}
+
+.custom-table th, .custom-table td {
+  vertical-align: middle;
+}
+
+.custom-table img {
+  max-height: 100px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+.table-text {
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  color: #333333;
+}
+.badge-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.rounded-pill {
+  border-radius: 50px;
+  padding: 0.25rem 0.75rem;
+}

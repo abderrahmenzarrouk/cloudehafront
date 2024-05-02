@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 class="mb-4">Liste des items</h2>
+  
+  <div class="table-responsive">
+    <table class="table table-bordered border-primary">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Description</th>
+          <th scope="col">Nombre de points</th>
+          <th scope="col">Image</th>
+          <th scope="col">Type d'item</th>
+          <th scope="col">Mode</th>          
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="items.length > 0; else noItems">
+          <tr *ngFor="let item of items">
+            <td>{{ item.nom }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.nombreDePoints }}</td>
+            <td>
+              <img
+                [src]="item.imageUrl"
+                alt=""
+                style="width: 100px; height: 100px;"
+                class="rounded-circle"
+              >
+            </td>
+            <td>{{ item.typeItem }}</td>
+            <td>{{ item.mode }}</td>
+            <td>
+              <div class="d-flex">
+                <button
+                  type="button"
+                  class="btn btn-link btn-rounded btn-sm fw-bold me-2"
+                  data-mdb-ripple-color="dark"
+                  (click)="deleteItem(item.id)"
+                >
+                  Supprimer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-link btn-rounded btn-sm fw-bold"
+                  data-mdb-ripple-color="dark"
+                  (click)="updateItem(item.id)"
+                >
+                  Mise à jour
+                </button>
+                
+              </div>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <ng-template #noItems>
+      <p>Aucun item trouvé.</p>
+    </ng-template>
+  </div>
+  <div class="text-center mt-3">
+    <button class="btn btn-success" (click)="redirectToNewItemPage()">Ajouter un item</button>
+  </div>
+</div>
