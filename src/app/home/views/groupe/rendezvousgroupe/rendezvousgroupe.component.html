@@ -163,7 +163,9 @@ Page content START -->
 									
 									<!-- Action item -->
 									<td>
-										<a href="#" class="btn btn-primary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"><i class="bi bi-download"></i></a>
+										<button (click)="AccepterRdv(rendv.idRdv)"  class="btn btn-success-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Accepter"><i class="bi bi-check"></i></button>
+										<button  (click)="RefuserRdv(rendv.idRdv)" class="btn btn-danger-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Refuser"><i class="bi bi-x"></i></button>
+										
 									</td>
 								</tr>
 							</tbody>

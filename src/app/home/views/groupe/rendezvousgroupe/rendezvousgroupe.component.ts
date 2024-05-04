@@ -51,4 +51,25 @@ export class RendezvousgroupeComponent {
             
             })
       }
+
+      AccepterRdv(id : number){
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const accepteURL = 'http://localhost:8083/RendezVous/accepterRdv/' + id;
+        this.http.post(accepteURL, null,{headers} ).subscribe((results) => {
+          this.ngOnInit();
+        });
+      }
+    
+    
+      RefuserRdv(id :number){
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const refuserURL = 'http://localhost:8083/RendezVous/refuserRdv/' + id;
+        this.http.post(refuserURL, null,{headers} ).subscribe((results) => {
+          
+          this.ngOnInit();
+        });
+      }
+
 }
