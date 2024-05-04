@@ -52,6 +52,11 @@ export class ReclamationformComponent implements OnInit {
       }
     );
   }
-  
+  logout(){
+    localStorage.removeItem(JSON.parse(localStorage.getItem("userconnect")!));
+    localStorage.removeItem(localStorage.getItem('Token')!);
+    this.router.navigateByUrl('/login');
+    
+  }
 
 }

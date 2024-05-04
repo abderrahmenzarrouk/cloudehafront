@@ -94,7 +94,9 @@ Page content START -->
 							<div class="list-group list-group-dark list-group-borderless">
 								<a class="list-group-item" routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
 								<a class="list-group-item" routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
-								<a class="list-group-item text-danger bg-danger-soft-hover" href="sign-in.html"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
+								<a class="list-group-item " routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+								<a class="list-group-item " routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation</a>
+								<a class="list-group-item text-danger bg-danger-soft-hover" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
 							</div>
 						</div>
 					</div>

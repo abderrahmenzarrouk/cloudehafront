@@ -23,6 +23,10 @@ import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteu
 import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
 import { ResetpasswordformComponent } from './home/view/resetpasswordform/resetpasswordform.component';
 import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
+import { StatistiquesComponent } from './home/views/admin/statistiques/statistiques.component';
+import { StatistiquesusersComponent } from './home/views/admin/statistiquesusers/statistiquesusers.component';
+import { ListgroupsComponent } from './home/views/groupe/listgroups/listgroups.component';
+import { ListinvitationComponent } from './home/views/groupe/listinvitation/listinvitation.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword
     ReclamationtuteurComponent,
     ForgotpasswordComponent,
     ResetpasswordformComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    StatistiquesComponent,
+    StatistiquesusersComponent,
+    ListgroupsComponent,
+    ListinvitationComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +60,10 @@ import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+  
+    
+    
+  
     
   ],
   providers: [],

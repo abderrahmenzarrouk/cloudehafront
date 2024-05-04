@@ -49,10 +49,7 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
-							<!-- Button -->
-							<div class="d-flex align-items-center mt-2 mt-md-0">
-								
-							</div>
+	
 						</div>
 					</div>
 				</div>
@@ -95,8 +92,10 @@ Page content START -->
 						<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless">
-								<a class="list-group-item " routerLink="/profile-tuteur"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-								<a class="list-group-item active" routerLink="/reclamation-tuteur" ><i class="bi bi-wallet2 fa-fw me-2"></i>Les Réclamations</a>
+								<a class="list-group-item" routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+								<a class="list-group-item " routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
+                                <a class="list-group-item active" routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+								<a class="list-group-item " routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation</a>
 								<a class="list-group-item text-danger bg-danger-soft-hover" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
 							</div>
 						</div>
@@ -105,84 +104,51 @@ Page content START -->
 				<!-- Responsive offcanvas body END -->
 			</div>
 			<!-- Left sidebar END -->
-
-			<!-- Main content START -->
             <div class="col-xl-9">
-				<!-- Card START -->
-				<div class="card border bg-transparent rounded-3">
-					<!-- Card header START -->
-					<div class="card-header bg-transparent border-bottom">
-						<h3 class="mb-0">Liste des Réclamations</h3>
-					</div>
-					<!-- Card header END -->
+
+				<div class="card bg-transparent border rounded-3">
 
 					<!-- Card body START -->
-					<div class="card-body">
-
-						<!-- Search and select START -->
+					<div class="card-body p-3 p-md-4">
+						<div class="row g-4">
+							<!-- Card item START -->
+							<div class="col-sm-6 col-lg-4" *ngFor="let groupe of groupes">
+								<div class="card shadow h-100" >
+									<div class="card-body pb-0">
+										<!-- Badge and favorite -->
+										<div class="d-flex justify-content-between mb-2">
+											<a href="#" class="badge bg-success bg-opacity-10 text-success">{{groupe.option}}</a>
 					
-						<!-- Search and select END -->
+										</div>
+										<!-- Title -->
+										<h5 class="card-title fw-normal"><a href="#">Nom du Groupe : {{groupe.nom_Groupe}}</a></h5>
+										<p class="mb-2 text-truncate-2">Notre Sujet : {{groupe.sujet}}</p>
+										<!-- Rating star -->
+										<ul class="list-inline mb-0">
+											<li class="list-inline-item ms-2 h6 fw-light mb-0">Score : {{groupe.total_Score}}</li>
+										</ul>
+									</div>
+                                    <div class="offset-3" style="margin-top: 10px;">
+                                        <button  class="btn btn-outline-primary mb-0" (click)="envoyerinvitation(groupe.idGroupe)">Intégrer</button>
+                                    </div>
+                                    
+									<!-- Card footer -->
+									<div class="card-footer pt-0 pb-3">
+										<hr>
+										<div class="d-flex justify-content-between">
+											<span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>{{groupe.annee}}</span>
+											<span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>{{groupe.statut}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
 
-						<!-- Course list table START -->
-						<div class="table-responsive border-0">
-							<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-								<!-- Table head -->
-								<thead>
-									<tr>
-										<th scope="col" class="border-0 rounded-start">Déscription</th>
-										<th scope="col" class="border-0">Date</th>
-										<th scope="col" class="border-0">Type</th>
-										<th scope="col" class="border-0">Etat</th>
-										<th scope="col" class="border-0 rounded-end">Action</th>
-									</tr>
-								</thead>
-
-								<!-- Table body START -->
-								<tbody>
-									<!-- Table item -->
-									<tr *ngFor="let reclamation of reclamations">
-										<!-- Course item -->
-										<td >
-											<div class="d-flex align-items-center">
 		
-												<div class="mb-0 ms-2">
-													<!-- Title -->
-													<h6><a href="#">{{reclamation.description}}</a></h6>
-												</div>
-											</div>
-										</td>
-										<!-- Enrolled item -->
-										<td class="text-center text-sm-start">{{reclamation.datereclamation}}</td>
-										<!-- Status item -->
-										<td>
-											<div class="badge bg-primary  ">{{reclamation.typeReclamtion}}</div>
-										</td>
-										<!-- Price item -->
-										<td>
-                                            <div class="badge bg-success bg-opacity-10 text-danger" *ngIf="reclamation.etatreclamation === 0">Non traité</div>
-                                           <div class="badge bg-success bg-opacity-10 text-success" *ngIf="reclamation.etatreclamation === 1">Déjà traité</div>
-                                        </td>
-										<!-- Action item -->
-										<td>
-											<button class="btn btn-sm btn-success-soft btn-round mb-0" [disabled]="reclamation.typeReclamtion === 'Educative'" (click)="enable(reclamation.id)"><i class="fas fa-fw fa-check"></i></button>
-										</td>
-									</tr>
-
-								</tbody>
-								<!-- Table body END -->
-							</table>
 						</div>
-						<!-- Course list table END -->
-
-						<!-- Pagination START -->
-
-						<!-- Pagination END -->
 					</div>
-					<!-- Card body START -->
-				</div>
-				<!-- Card END -->
+					<!-- Card body EMD -->
+				</div>  
 			</div>
-			<!-- Main content END -->
 		</div><!-- Row END -->
 	</div>
 </section>
@@ -196,3 +162,4 @@ Page content END -->
 
 <!-- Mirrored from eduport.webestica.com/instructor-edit-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:15:40 GMT -->
 </html>
+

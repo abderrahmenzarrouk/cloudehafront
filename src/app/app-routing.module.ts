@@ -15,6 +15,10 @@ import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profil
 import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
 import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
+import { StatistiquesComponent } from './home/views/admin/statistiques/statistiques.component';
+import { StatistiquesusersComponent } from './home/views/admin/statistiquesusers/statistiquesusers.component';
+import { ListgroupsComponent } from './home/views/groupe/listgroups/listgroups.component';
+import { ListinvitationComponent } from './home/views/groupe/listinvitation/listinvitation.component';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
@@ -32,7 +36,11 @@ const routes: Routes = [
   { path: 'profile-tuteur', component: ProfiletuteurComponent },
   { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
   { path: 'forgot-password', component: ForgotpasswordComponent },
-  { path: 'reset-password', component: ResetpasswordComponent }
+  { path: 'reset-password', component: ResetpasswordComponent },
+  { path: 'reclamation-statistiques', component: StatistiquesComponent },
+  { path: 'user-statistiques', component: StatistiquesusersComponent },
+  { path: 'list-groups', component: ListgroupsComponent },
+  { path: 'list-invitations', component: ListinvitationComponent }
  
 ];
 

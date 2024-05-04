@@ -49,10 +49,7 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
-							<!-- Button -->
-							<div class="d-flex align-items-center mt-2 mt-md-0">
-								
-							</div>
+	
 						</div>
 					</div>
 				</div>
@@ -95,8 +92,10 @@ Page content START -->
 						<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless">
-								<a class="list-group-item " routerLink="/profile-tuteur"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-								<a class="list-group-item active" routerLink="/reclamation-tuteur" ><i class="bi bi-wallet2 fa-fw me-2"></i>Les Réclamations</a>
+								<a class="list-group-item" routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+								<a class="list-group-item " routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
+                                <a class="list-group-item " routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+                                <a class="list-group-item active" routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation</a>
 								<a class="list-group-item text-danger bg-danger-soft-hover" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
 							</div>
 						</div>
@@ -105,87 +104,71 @@ Page content START -->
 				<!-- Responsive offcanvas body END -->
 			</div>
 			<!-- Left sidebar END -->
-
-			<!-- Main content START -->
-            <div class="col-xl-9">
-				<!-- Card START -->
-				<div class="card border bg-transparent rounded-3">
-					<!-- Card header START -->
-					<div class="card-header bg-transparent border-bottom">
-						<h3 class="mb-0">Liste des Réclamations</h3>
-					</div>
-					<!-- Card header END -->
-
-					<!-- Card body START -->
-					<div class="card-body">
-
-						<!-- Search and select START -->
-					
-						<!-- Search and select END -->
-
-						<!-- Course list table START -->
-						<div class="table-responsive border-0">
-							<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-								<!-- Table head -->
-								<thead>
-									<tr>
-										<th scope="col" class="border-0 rounded-start">Déscription</th>
-										<th scope="col" class="border-0">Date</th>
-										<th scope="col" class="border-0">Type</th>
-										<th scope="col" class="border-0">Etat</th>
-										<th scope="col" class="border-0 rounded-end">Action</th>
-									</tr>
-								</thead>
-
-								<!-- Table body START -->
-								<tbody>
-									<!-- Table item -->
-									<tr *ngFor="let reclamation of reclamations">
-										<!-- Course item -->
-										<td >
-											<div class="d-flex align-items-center">
-		
-												<div class="mb-0 ms-2">
-													<!-- Title -->
-													<h6><a href="#">{{reclamation.description}}</a></h6>
-												</div>
-											</div>
-										</td>
-										<!-- Enrolled item -->
-										<td class="text-center text-sm-start">{{reclamation.datereclamation}}</td>
-										<!-- Status item -->
-										<td>
-											<div class="badge bg-primary  ">{{reclamation.typeReclamtion}}</div>
-										</td>
-										<!-- Price item -->
-										<td>
-                                            <div class="badge bg-success bg-opacity-10 text-danger" *ngIf="reclamation.etatreclamation === 0">Non traité</div>
-                                           <div class="badge bg-success bg-opacity-10 text-success" *ngIf="reclamation.etatreclamation === 1">Déjà traité</div>
-                                        </td>
-										<!-- Action item -->
-										<td>
-											<button class="btn btn-sm btn-success-soft btn-round mb-0" [disabled]="reclamation.typeReclamtion === 'Educative'" (click)="enable(reclamation.id)"><i class="fas fa-fw fa-check"></i></button>
-										</td>
-									</tr>
-
-								</tbody>
-								<!-- Table body END -->
-							</table>
+			
+				<div class="col-9">
+					<!-- Card START -->
+					<div class="card border bg-transparent rounded-3">
+						<!-- Card header START -->
+						<div class="card-header bg-transparent border-bottom">
+							<h3 class="mb-0">List Des Invitations</h3>
 						</div>
-						<!-- Course list table END -->
+						<!-- Card header END -->
+				
+						<!-- Card body START -->
+						<div class="card-body">
+				
+	
+				
+							<!-- Course list table START -->
+							<div class="table-responsive border-0">
+								<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+									<!-- Table head -->
+									<thead>
+										<tr>
+											<th scope="col" class="border-0 rounded-start">Invitation</th>
+											<th scope="col" class="border-0 rounded-end">Action</th>
+										</tr>
+									</thead>
+				
+									<!-- Table body START -->
+									<tbody>
+										<!-- Table item -->
+										<tr *ngFor="let invitation of invitations">
+											<!-- Course item -->
+											<td>
+												<div class="d-flex align-items-center">
+													<div class="mb-0 ms-2">
+														<!-- Title -->
+														<h6><a href="#">{{invitation.nom}}{{invitation.prenom}}</a></h6>
 
-						<!-- Pagination START -->
+													</div>
+												</div>
+											</td>
+											<td>
+												<a href="#" class="btn btn-sm btn-success-soft btn-round me-1 mb-0"><i class="far fa-fw fa-edit"></i></a>
+												<button class="btn btn-sm btn-danger-soft btn-round mb-0"><i class="fas fa-fw fa-times"></i></button>
+											</td>
+										</tr>
 
-						<!-- Pagination END -->
+									</tbody>
+									<!-- Table body END -->
+								</table>
+							</div>
+							<!-- Course list table END -->
+				
+				
+						</div>
+						<!-- Card body START -->
 					</div>
-					<!-- Card body START -->
+					<!-- Card END -->
 				</div>
-				<!-- Card END -->
-			</div>
-			<!-- Main content END -->
+			
+
 		</div><!-- Row END -->
 	</div>
+	
 </section>
+
 <!-- =======================
 Page content END -->
 
@@ -196,3 +179,5 @@ Page content END -->
 
 <!-- Mirrored from eduport.webestica.com/instructor-edit-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:15:40 GMT -->
 </html>
+
+

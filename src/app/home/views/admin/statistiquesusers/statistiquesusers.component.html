@@ -82,7 +82,7 @@
 				</li>
 				
 				<!-- Menu item 5 -->
-				
+
 				<!-- Menu item 6 -->
 				<li class="nav-item"> <a class="nav-link" routerLink="/user-statistiques"><i class="far fa-chart-bar fa-fw me-2"></i>Utilisateurs Statistiques</a></li>
 
@@ -176,9 +176,7 @@
 					<!-- Topbar menu START -->
 					<div class="collapse navbar-collapse w-100" id="navbarTopContent">
 						<!-- Top search START -->
-						<div class="nav my-3 my-xl-0 flex-nowrap align-items-center">
 
-						</div>
 						<!-- Top search END -->
 					</div>
 					<!-- Topbar menu END -->
@@ -320,86 +318,144 @@
 	</nav>
 	<!-- Top bar END -->
 
+	<!-- Page main content START -->
     <div class="col-12">
-        <!-- Card START -->
-        <div class="card border bg-transparent rounded-3">
-            <!-- Card header START -->
-            <div class="card-header bg-transparent border-bottom">
-                <h3 class="mb-0">Liste des Réclamation Eduvatives</h3>
-            </div>
-            <!-- Card header END -->
+        <div class="row">
+            <div class="col-5" style="margin-top: 10px;margin-left: 70px;">
+                <div class="card shadow h-100">
 
-            <!-- Card body START -->
-            <div class="card-body">
+                    <!-- Card header -->
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
+                        <h5 class="card-header-title">Utilisateurs selon leur Role</h5>
+                    </div>
 
-                <!-- Search and select START -->
-              
-                <!-- Search and select END -->
+                    <!-- Card body START -->
+                    <div class="card-body p-4">
+                        <!-- Chart -->
+                        <div class="col-sm-6 mx-auto">
+                            <canvas id="myChart"></canvas>
+                        </div>
 
-                <!-- Course list table START -->
-                <div class="table-responsive border-0">
-                    <table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
-                        <!-- Table head -->
-                        <thead>
-                            <tr>
-                                <th scope="col" class="border-0 rounded-start">Déscription</th>
-								<th scope="col" class="border-0">Date</th>
-								<th scope="col" class="border-0">Tuteur</th>
-								<th scope="col" class="border-0">Type</th>
-								<th scope="col" class="border-0 rounded-end">Etat</th>
-                            </tr>
-                        </thead>
-
-                        <!-- Table body START -->
-                        <tbody>
-                            <!-- Table item -->
-                            <tr *ngFor="let reclamation of reclamations">
-                                <!-- Course item -->
-                                <td >
-                                    <div class="d-flex align-items-center">
-                                        <!-- Image -->
-                                        <div class="w-60px">
-                                            <img [src]="decodeBase64Image(reclamation.user.image)"  class="rounded" alt="">
-                                        </div>
-                                        <div class="mb-0 ms-2">
-                                            <!-- Title -->
-                                            <h6><a href="#">{{reclamation.description}}</a></h6>
-                                            <!-- Info -->
-                                            <div class="d-sm-flex">
-                                                <p class="h6 fw-light mb-0 small me-3"><i class="fas fa-envelope text-orange me-2"></i>{{reclamation.user.email}}</p>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <!-- Enrolled item -->
-                                <td class="text-center text-sm-start">{{reclamation.datereclamation}}</td>
-                                <!-- Status item -->
-                                <td>
-                                    <div class="badge bg-success bg-opacity-10 text-primary">{{reclamation.tuteurchoisit}}</div>
-                                </td>
-                                <!-- Price item -->
-                                <td>{{reclamation.typeReclamtion}}</td>
-                                <!-- Action item -->
-                                <td>
-                                    <div class="badge bg-success bg-opacity-10 text-danger" *ngIf="reclamation.etatreclamation === 0">En cours de traitement</div>
-                                    <div class="badge bg-success bg-opacity-10 text-success" *ngIf="reclamation.etatreclamation === 1">Déjà traité</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <!-- Table body END -->
-                    </table>
+                        <!-- Content -->
+                        <ul class="list-group list-group-borderless mt-3">
+                            <li class="list-group-item"><i class="text-primary fas fa-circle me-2"></i>Nombre des Etudiants : {{ etudiants.length}}</li>
+                            <li class="list-group-item"><i class="text-success fas fa-circle me-2"></i>Nombre des Tuteurs : {{ tuteurs.length }}</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Course list table END -->
-
-                <!-- Pagination START -->
-
-                <!-- Pagination END -->
+                <!-- Card body END -->
             </div>
-            <!-- Card body START -->
+            <div class="col-5" style="margin-top: 10px;margin-left: 10px;">
+                <div class="card shadow h-100">
+
+                    <!-- Card header -->
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
+                        <h5 class="card-header-title">Distribution des Etudiants par specialité</h5>
+                    </div>
+					<div class="card-body " style="height: 100px;width: 350px;">
+                        <!-- Chart -->
+                        <div class="col-12 offset-2">
+                            <canvas id="etudiantBySpecialityChart" ></canvas>
+                        </div>
+   
+                    </div>
+
+                    <!-- Card body START -->
+ 
+                </div>
+                <!-- Card body END -->
+            </div>
         </div>
-        <!-- Card END -->
     </div>
+
+	<div class="col-12">
+        <div class="row">
+            <div class="col-10" style="margin-top: 10px;margin-left: 80px;">
+                <div class="card shadow h-100">
+
+                    <!-- Card header -->
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
+                        <h5 class="card-header-title">Évolution des Inscriptions des Utilisateurs par Mois</h5>
+                    </div>
+
+                    <!-- Card body START -->
+                    <div class="card-body p-4">
+                        <!-- Chart -->
+                        <div class="col-8 offset-2">
+                            <canvas id="registrationChart"></canvas>
+                        </div>
+                        <ul class="list-group list-group-borderless mt-3">
+                            <li class="list-group-item">
+                                Cette ghraphe illustre le nombre d'inscriptions d'utilisateurs enregistrées chaque mois. Elle permet de visualiser l'évolution des inscriptions au fil du temps et de comprendre les tendances de croissance des utilisateurs sur la plateforme.
+                            </li>
+                            
+                        </ul>
+                        <!-- Content -->
+   
+                    </div>
+                </div>
+                <!-- Card body END -->
+            </div>
+ 
+        </div>
+    </div>
+
+	<div class="col-12" style="margin-bottom: 75px;">
+        <div class="row">
+            <div class="col-5" style="margin-top: 10px;margin-left: 70px;">
+                <div class="card shadow h-100">
+
+                    <!-- Card header -->
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
+                        <h5 class="card-header-title">Etudiants selon leur activité</h5>
+                    </div>
+
+                    <!-- Card body START -->
+                    <div class="card-body p-4">
+                        <!-- Chart -->
+                        <div class="col-6 offset-2">
+                            <canvas id="userActivityChart"></canvas>
+                        </div>
+
+                        <!-- Content -->
+                        <ul class="list-group list-group-borderless mt-3">
+                            <li class="list-group-item"><i class="text-success fas fa-circle me-2"></i>Nombre des Etudiants actives : {{ activeUsers}}</li>
+                            <li class="list-group-item"><i class="text-warning fas fa-circle me-2"></i>Nombre des Etudiants inactives : {{ inactiveUsers }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Card body END -->
+            </div>
+            <div class="col-5" style="margin-top: 10px;margin-left: 10px;">
+                <div class="card shadow h-100">
+
+                    <!-- Card header -->
+                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
+                        <h5 class="card-header-title">Répartition des âges des utilisateurs</h5>
+                    </div>
+					<div class="card-body p-4 offset-1" style="height: 250px;width: 350px;">
+                        <!-- Chart -->
+                        <div class="col-12">
+                            <canvas id="ageDistributionChart" ></canvas>
+                        </div>
+						<ul class="list-group list-group-borderless mt-3">
+                            <li class="list-group-item">
+                                Cette visualisation présente la répartition des utilisateurs selon différentes tranches d'âge, permettant ainsi de mieux comprendre la démographie en termes d'âge de Notre Platforme
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                    <!-- Card body START -->
+ 
+                </div>
+                <!-- Card body END -->
+            </div>
+        </div>
+    </div>
+
+
+	<!-- Page main content END -->
 
 </div>
 <!-- Page content END -->

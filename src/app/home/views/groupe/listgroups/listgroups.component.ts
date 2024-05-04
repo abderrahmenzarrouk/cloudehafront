@@ -3,29 +3,29 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reclamationeducatives',
-  templateUrl: './reclamationeducatives.component.html',
-  styleUrls: ['./reclamationeducatives.component.css']
+  selector: 'app-listgroups',
+  templateUrl: './listgroups.component.html',
+  styleUrls: ['./listgroups.component.css']
 })
-export class ReclamationeducativesComponent {
+export class ListgroupsComponent {
   constructor(private router: Router, private http: HttpClient) {}
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
   ngOnInit(): void {
     this.userconnect;
-    this.getreclamtions()
+    this.getgroupes()
   }
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
   }
-  reclamations: any[] = [];
-  getreclamtions(){
-    const url = 'http://localhost:8083/api/v1/reclamations/all';
+  groupes: any[] = [];
+  getgroupes(){
+    const url = 'http://localhost:8083/Groupe/getAllGroupes';
     const token = localStorage.getItem('Token');
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     this.http.get(url, { headers }).subscribe(
       (response: any) => {
-       this.reclamations = response.filter((rec: { typeReclamtion: string; })  => rec.typeReclamtion !== "Technique" );
-       console.log(this.reclamations)
+        this.groupes = response
+       console.log(this.groupes)
         })
       }
       logout(){
@@ -34,5 +34,16 @@ export class ReclamationeducativesComponent {
         this.router.navigateByUrl('/login');
         
       }
+      envoyerinvitation(idgroupe:number){
+        const url = 'http://localhost:8083/Invitation/addInvitation/'+this.userconnect.id+'/'+idgroupe;
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        this.http.post(url,null, { headers }).subscribe(
+          (response: any) => {
+            
+           console.log(response)
+            })
+      }
 
 }
+
