@@ -6,6 +6,8 @@ import { EventsComponent } from './events/events.component';
 import { AjouterEventComponent } from './ajouter-event/ajouter-event.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     EventsRoutingModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ]
 })

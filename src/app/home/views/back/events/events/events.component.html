@@ -1,55 +1,30 @@
 <div class="card-body px-0">
+    <!-- Bouton Ajouter -->
     <div class="d-flex justify-content-end mb-3">
-        <a routerLink="/back/events/ajouterevent" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Add</a>
+        <a routerLink="/back/events/ajouterevent" class="btn btn-sm btn-primary me-2">Ajouter</a>
     </div>
-   <!-- Tabs content START -->
-<div class="tab-content">
-
-    <!-- Tabs content item START -->
-    <div class="tab-pane fade show active" id="nav-preview-tab-1">
-        <div class="row g-4 justify-content-center align-items-center">
-
-            <!-- Card item START -->
-            <div class="col-md-6 col-xxl-4" *ngFor="let e of events">
-                <div class="card bg-transparent border h-100 d-flex flex-column justify-content-center align-items-center"> 
-                    <!-- Card header -->
-                    <div class="card-header bg-transparent border-bottom">
-                        <a href="car-single.html">
-                            <!-- Image de l'événement -->
-                            <img [src]="e.image != null ? e.image : 'assets/default-image.jpg'" class="card-img-top" alt="...">
-                        </a>
+    <!-- Liste des événements affichés horizontalement -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Boucle sur les événements -->
+        <div class="col" *ngFor="let event of events">
+            <div class="card bg-transparent border h-100 d-flex flex-column justify-content-center align-items-center"> 
+                <!-- Card body -->
+                <div class="card-body text-center">
+                    <!-- Nom de l'événement -->
+                    <h5 class="card-title mb-3">{{ event.nom_event }}</h5>
+                    <img [src]="event.image" alt="Event Image">
+                    <div [ngClass]="{'available': isEventAvailable(event.date_fin), 'unavailable': !isEventAvailable(event.date_fin)}">
+                        <p *ngIf="isEventAvailable(event.date_fin)" class="available">L'événement est disponible 😊</p>
+                        <p *ngIf="!isEventAvailable(event.date_fin)" class="unavailable">L'événement n'est plus disponible ☹️</p>
                     </div>
-                    <!-- Card body -->
-                    <div class="card-body text-center">
-                        <!-- Nom de l'événement -->
-                        <h5 class="card-title mb-3">{{ e.nom_event }}</h5>
-                        <!-- Dates -->
-                        <p class="card-text mb-3"><strong>Date de début:</strong> {{ e.date_debut | date }}</p>
-                        <p class="card-text mb-3"><strong>Date de fin:</strong> {{ e.date_fin | date }}</p>
-                        <!-- Places -->
-                        <p class="card-text mb-3"><strong>Places disponibles:</strong> {{ e.placesDispo }}</p>
-                        <p class="card-text mb-3"><strong>Places restantes:</strong> {{ e.placesRestants }}</p>
-                        <!-- Actions -->
-                        <div class="dropdown text-end">
-                            <a href="#" class="btn btn-sm btn-light btn-round small mb-0" role="button" id="dropdownShare2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-three-dots"></i>
-                            </a>
-                            <!-- Dropdown button -->
-                            <ul class="dropdown-menu dropdown-w-sm dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare2">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Modifier</a></li>
-                                <li><a class="dropdown-item" (click)="deleteEvent(e.id)"><i class="bi bi-trash"></i> Supprimer</a></li>
-                            </ul>
-                        </div>
+                    <!-- Affichage des réservations -->
+                    <div *ngFor="let reservation of reservationsMap[event.id]">
+                        <p>{{ reservation.dateRes|date }}</p> <!-- Ajustez pour afficher les données appropriées de la réservation -->
                     </div>
+
+                    <!-- Reste du code -->
                 </div>
             </div>
-            <!-- Card item END -->
-
         </div>
     </div>
-    <!-- Tabs content item END -->
-
 </div>
-<!-- Tabs content END -->
-
-</div> 

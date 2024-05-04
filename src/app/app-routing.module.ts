@@ -1,3 +1,4 @@
+import { ReseventsComponent } from './home/views/resevents/resevents/resevents.component';
 import { BackModule } from './home/views/back/back.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -19,11 +20,15 @@ import { NotFoundComponent } from './home/views/not-found/not-found.component';
 import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
 
+
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
   {path:"back",loadChildren:()=>
 
     import('./home/views/back/back.module').then(m=>(m).BackModule)},
+    {path:"front",loadChildren:()=>
+
+      import('./home/views/front/front.module').then(m=>(m).FrontModule)},
   { path: 'register', component: RegisterComponent },
   { path: 'verifiermail', component: WelcomepageComponent },
   { path: 'login', component: LoginComponent },

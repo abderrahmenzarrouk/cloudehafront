@@ -22,11 +22,19 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets1"
+
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets1/css/style.css",
+              "src/assets1/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/assets1/vendor/choices/css/choices.min.css",
+              "src/assets1/vendor/font-awesome/css/all.min.css"
+              
+            
             ],
             "scripts": []
           },
