@@ -27,6 +27,9 @@ import { StatistiquesComponent } from './home/views/admin/statistiques/statistiq
 import { StatistiquesusersComponent } from './home/views/admin/statistiquesusers/statistiquesusers.component';
 import { ListgroupsComponent } from './home/views/groupe/listgroups/listgroups.component';
 import { ListinvitationComponent } from './home/views/groupe/listinvitation/listinvitation.component';
+import { MongroupeComponent } from './home/views/groupe/mongroupe/mongroupe.component';
+import { AjouterpostgroupeComponent } from './home/views/groupe/ajouterpostgroupe/ajouterpostgroupe.component';
+import { RendezvousgroupeComponent } from './home/views/groupe/rendezvousgroupe/rendezvousgroupe.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { ListinvitationComponent } from './home/views/groupe/listinvitation/list
     StatistiquesComponent,
     StatistiquesusersComponent,
     ListgroupsComponent,
-    ListinvitationComponent
+    ListinvitationComponent,
+    MongroupeComponent,
+    AjouterpostgroupeComponent,
+    RendezvousgroupeComponent
   ],
   imports: [
     BrowserModule,

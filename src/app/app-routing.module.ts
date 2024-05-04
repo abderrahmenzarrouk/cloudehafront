@@ -19,6 +19,9 @@ import { StatistiquesComponent } from './home/views/admin/statistiques/statistiq
 import { StatistiquesusersComponent } from './home/views/admin/statistiquesusers/statistiquesusers.component';
 import { ListgroupsComponent } from './home/views/groupe/listgroups/listgroups.component';
 import { ListinvitationComponent } from './home/views/groupe/listinvitation/listinvitation.component';
+import { MongroupeComponent } from './home/views/groupe/mongroupe/mongroupe.component';
+import { AjouterpostgroupeComponent } from './home/views/groupe/ajouterpostgroupe/ajouterpostgroupe.component';
+import { RendezvousgroupeComponent } from './home/views/groupe/rendezvousgroupe/rendezvousgroupe.component';
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
@@ -40,7 +43,10 @@ const routes: Routes = [
   { path: 'reclamation-statistiques', component: StatistiquesComponent },
   { path: 'user-statistiques', component: StatistiquesusersComponent },
   { path: 'list-groups', component: ListgroupsComponent },
-  { path: 'list-invitations', component: ListinvitationComponent }
+  { path: 'list-invitations', component: ListinvitationComponent },
+  { path: 'mongroupe', component: MongroupeComponent },
+  { path: 'groupepost', component: AjouterpostgroupeComponent },
+  { path: 'rendezvousgroupe', component: RendezvousgroupeComponent },
  
 ];
 

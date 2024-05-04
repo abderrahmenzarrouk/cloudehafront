@@ -13,6 +13,7 @@ export class ListreclamationsComponent implements OnInit {
   ngOnInit(): void {
     this.userconnect;
     this.getreclamtions()
+    this.getinvitation()
   }
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
@@ -37,6 +38,18 @@ export class ListreclamationsComponent implements OnInit {
         localStorage.removeItem(localStorage.getItem('Token')!);
         this.router.navigateByUrl('/login');
         
+      }
+      nombreinvi : number = 0;
+      invitations: any[] = [];
+      getinvitation(){
+        const url = 'http://localhost:8083/Invitation/listInvitationByUserId/'+this.userconnect.id;
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        this.http.get(url, { headers }).subscribe(
+          (response: any) => {
+            this.invitations=response
+            this.nombreinvi = this.invitations.length
+            })
       }
 }
 

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listgroups',
@@ -13,6 +14,7 @@ export class ListgroupsComponent {
   ngOnInit(): void {
     this.userconnect;
     this.getgroupes()
+    this.getinvitation()
   }
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
@@ -41,9 +43,34 @@ export class ListgroupsComponent {
         this.http.post(url,null, { headers }).subscribe(
           (response: any) => {
             
-           console.log(response)
+            Swal.fire({
+              icon: 'success',
+              title: 'Invitation envoyer',
+              text: 'Votre invitation pour rejoindre ce groupe a été envoyer avec succeé',
+              showConfirmButton: false,
+              timer: 2500
+            }).then(() => {
+              this.ngOnInit()
+              
+            });
             })
       }
+      nombreinvi : number = 0;
+      invitations: any[] = [];
+      getinvitation(){
+        const url = 'http://localhost:8083/Invitation/listInvitationByUserId/'+this.userconnect.id;
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        this.http.get(url, { headers }).subscribe(
+          (response: any) => {
+            this.invitations=response
+            this.nombreinvi = this.invitations.length
+            })
+      }
+
+      
+
+
 
 }
 

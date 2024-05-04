@@ -49,10 +49,7 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
-							<!-- Button -->
-							<div class="d-flex align-items-center mt-2 mt-md-0">
-								
-							</div>
+	
 						</div>
 					</div>
 				</div>
@@ -95,11 +92,14 @@ Page content START -->
 						<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless">
-								<a class="list-group-item active" routerLink="/profile-tuteur"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-								<a class="list-group-item"  routerLink="/reclamation-tuteur"><i class="bi bi-wallet2 fa-fw me-2"></i>Les Réclamations</a>
-								<a class="list-group-item " routerLink="/mongroupe"><i class="fas fa-user-graduate fa-fw me-1"></i>Mon Groupe</a>
-								<a class="list-group-item" routerLink="/groupepost"><i class="far fa-comment-dots fa-fw me-2"></i>Posts du Groupe</a>
+								<a class="list-group-item" routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+								<a class="list-group-item " routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
+                                <a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+                                <a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation <span class="badge rounded-circle bg-primary text-white">{{invitations.length}}</span></a>
+                                <a class="list-group-item " routerLink="/mongroupe"><i class="fas fa-user-graduate fa-fw me-1"></i>Mon Groupe</a>
+								<a class="list-group-item active" routerLink="/groupepost"><i class="far fa-comment-dots fa-fw me-2"></i>Posts du Groupe</a>
 								<a class="list-group-item " routerLink="/rendezvousgroupe"><i class="far fa-clipboard fa-fw me-2"></i>Groupe Rendez-vous</a>
+								
 								<a class="list-group-item text-danger bg-danger-soft-hover" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
 							</div>
 						</div>
@@ -108,85 +108,55 @@ Page content START -->
 				<!-- Responsive offcanvas body END -->
 			</div>
 			<!-- Left sidebar END -->
-
-			<!-- Main content START -->
-			<div class="col-xl-9">
-				<!-- Edit profile START -->
-				<div class="card bg-transparent border rounded-3">
-					<!-- Card header -->
-					<div class="card-header bg-transparent border-bottom">
-						<h3 class="card-header-title mb-0">
-                            Editer le profil</h3>
-					</div>
-					<!-- Card body START -->
-					<div class="card-body">
-						<!-- Form -->
-						<form class="row g-4" role="form" #registerForm ="ngForm" (ngSubmit)="register(registerForm)">
-
-							<!-- Profile picture -->
-							<div class="col-12 justify-content-center align-items-center">
-								<label class="form-label">Photo de Profile</label>
-								<div class="d-flex align-items-center">
-									<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
-										<!-- Avatar place holder -->
-										<span class="avatar avatar-xl">
-											<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" [src]="decodeBase64Image(userconnect.image)" alt="">
-										</span>
-										<!-- Remove btn -->
-										<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
-									</label>
-									<!-- Upload button -->
-									<label class="btn btn-primary-soft mb-0" for="fileInput">Change</label>
-									<input class="form-control d-none" placeholder="file" id="fileInput" type="file" name="file" [(ngModel)]="registerForm.value.file">
+			<div class="col-9">
+				<!-- Comment START -->
+					<!-- Comment level 1-->
+					<div class="my-4 d-flex"  *ngFor="let post of posts ">
+						<div>
+							<div class="mb-2">
+								<h5 class="m-0"> Membre du Groupe : {{post.nom}} {{post.prenom}}</h5>
+							</div>
+							<p>Contenu du Post : {{post.contenu}}</p>
+							<a  class="btn btn-sm btn-light mb-0" style="margin-left: 50px;" (click)="voirpost(post.idPost)">Commenter</a>
+							<a  class="btn btn-sm btn-light mb-0"  style="margin-left: 20px;" (click)="getcommentaires(post.idPost)">Afficher</a>
+							<form class="row align-items-center justify-content-center my-4" style="margin-right: 50px;" [hidden]="shownpost.indexOf(post.idPost) === -1" [formGroup]="postForm" (ngSubmit)="envoyerpost(post.idPost)" >
+								<div class="col-12" >
+									<div class="bg-body shadow rounded-3 p-2">
+										<div class="input-group">
+											<input class="form-control border-0 me-1" type="email" placeholder="Votre Commentaire " formControlName="post">
+											<button type="submit" class="btn btn-blue mb-0 rounded-3" >Ajouter Commentaire</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<div class="my-4 d-flex " style="margin-left: 100px;" *ngFor="let commentaire of commentaires" >
+								<div [hidden]="showncpmmentaire.indexOf(post.idPost) === -1" >
+									<div class="mb-2">
+										<h6 class="m-0">Commentaire du : {{commentaire.nom}} {{commentaire.prenom}}</h6>
+										<p style="margin-left: 100px;">{{commentaire.contenu}}</p>
+									</div>
+		
+		
 								</div>
 							</div>
 
-							<!-- Full name -->
-							<div class="col-12">
-								<label class="form-label">Nom et prénom</label>
-								<div class="input-group">
-									<input type="text" class="form-control" value="{{userconnect.nom}}" placeholder="First name" [(ngModel)]="registerForm.value.nom" name="nom" placeholder="{{userconnect.nom}}">
-									<input type="text" class="form-control" value="{{userconnect.prenom}}" placeholder="Last name" [(ngModel)]="registerForm.value.prenom" name="prenom" placeholder="{{userconnect.prenom}}">
-								</div>
-							</div>
+						</div>
 
-
-							<!-- Email id -->
-							<div class="col-md-6">
-								<label class="form-label">Email </label>
-								<input class="form-control" type="email" value="{{userconnect.email}}"  placeholder="Email" [(ngModel)]="registerForm.value.email" name="email" placeholder="{{userconnect.email}}">
-							</div>
-
-							<!-- Phone number -->
-							<div class="col-md-6">
-								<label class="form-label">Télephone</label>
-								<input type="text" class="form-control" value="{{userconnect.tel}}" placeholder="Phone number" [(ngModel)]="registerForm.value.telephone" name="telephone"  >
-							</div>
-
-							<!-- Location -->
-							<div class="col-md-6">
-								<label class="form-label">Age</label>
-								<input class="form-control" type="text" value="{{userconnect.age}}" [(ngModel)]="registerForm.value.age" name="age" placeholder="{{userconnect.age}}">
-							</div>
-							
-
-
-
-							<!-- Save button -->
-							<div class="d-sm-flex justify-content-end">
-								<input type="button" class="btn btn-primary mb-0" value="Modifier" (click)="register(registerForm)">
-							</div>
-						</form>
 					</div>
-					<!-- Card body END -->
-				</div>
-				<!-- Edit profile END -->
 
+				
+				<!-- Comment END -->
+
+				<!-- Form START -->
+
+				<!-- Form END -->
 			</div>
-			<!-- Main content END -->
+
 		</div><!-- Row END -->
 	</div>
+	
 </section>
+
 <!-- =======================
 Page content END -->
 
@@ -197,3 +167,6 @@ Page content END -->
 
 <!-- Mirrored from eduport.webestica.com/instructor-edit-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:15:40 GMT -->
 </html>
+
+
+

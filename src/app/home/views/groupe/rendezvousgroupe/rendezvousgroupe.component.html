@@ -49,10 +49,8 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
-							<!-- Button -->
-							<div class="d-flex align-items-center mt-2 mt-md-0">
-								
-							</div>
+
+	
 						</div>
 					</div>
 				</div>
@@ -95,11 +93,13 @@ Page content START -->
 						<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
 							<!-- Dashboard menu -->
 							<div class="list-group list-group-dark list-group-borderless">
-								<a class="list-group-item active" routerLink="/profile-tuteur"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
-								<a class="list-group-item"  routerLink="/reclamation-tuteur"><i class="bi bi-wallet2 fa-fw me-2"></i>Les Réclamations</a>
-								<a class="list-group-item " routerLink="/mongroupe"><i class="fas fa-user-graduate fa-fw me-1"></i>Mon Groupe</a>
+								<a class="list-group-item" routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Edit Profile</a>
+								<a class="list-group-item " routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
+                                <a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+                                <a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation <span class="badge rounded-circle bg-primary text-white">{{invitations.length}}</span></a>
+                                <a class="list-group-item " routerLink="/mongroupe"><i class="fas fa-user-graduate fa-fw me-1"></i>Mon Groupe</a>
 								<a class="list-group-item" routerLink="/groupepost"><i class="far fa-comment-dots fa-fw me-2"></i>Posts du Groupe</a>
-								<a class="list-group-item " routerLink="/rendezvousgroupe"><i class="far fa-clipboard fa-fw me-2"></i>Groupe Rendez-vous</a>
+                                <a class="list-group-item active" routerLink="/rendezvousgroupe"><i class="far fa-clipboard fa-fw me-2"></i>Groupe Rendez-vous</a>
 								<a class="list-group-item text-danger bg-danger-soft-hover" (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
 							</div>
 						</div>
@@ -108,85 +108,83 @@ Page content START -->
 				<!-- Responsive offcanvas body END -->
 			</div>
 			<!-- Left sidebar END -->
-
-			<!-- Main content START -->
-			<div class="col-xl-9">
-				<!-- Edit profile START -->
-				<div class="card bg-transparent border rounded-3">
-					<!-- Card header -->
-					<div class="card-header bg-transparent border-bottom">
-						<h3 class="card-header-title mb-0">
-                            Editer le profil</h3>
-					</div>
-					<!-- Card body START -->
-					<div class="card-body">
-						<!-- Form -->
-						<form class="row g-4" role="form" #registerForm ="ngForm" (ngSubmit)="register(registerForm)">
-
-							<!-- Profile picture -->
-							<div class="col-12 justify-content-center align-items-center">
-								<label class="form-label">Photo de Profile</label>
-								<div class="d-flex align-items-center">
-									<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
-										<!-- Avatar place holder -->
-										<span class="avatar avatar-xl">
-											<img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" [src]="decodeBase64Image(userconnect.image)" alt="">
-										</span>
-										<!-- Remove btn -->
-										<button type="button" class="uploadremove"><i class="bi bi-x text-white"></i></button>
-									</label>
-									<!-- Upload button -->
-									<label class="btn btn-primary-soft mb-0" for="fileInput">Change</label>
-									<input class="form-control d-none" placeholder="file" id="fileInput" type="file" name="file" [(ngModel)]="registerForm.value.file">
-								</div>
-							</div>
-
-							<!-- Full name -->
-							<div class="col-12">
-								<label class="form-label">Nom et prénom</label>
-								<div class="input-group">
-									<input type="text" class="form-control" value="{{userconnect.nom}}" placeholder="First name" [(ngModel)]="registerForm.value.nom" name="nom" placeholder="{{userconnect.nom}}">
-									<input type="text" class="form-control" value="{{userconnect.prenom}}" placeholder="Last name" [(ngModel)]="registerForm.value.prenom" name="prenom" placeholder="{{userconnect.prenom}}">
-								</div>
-							</div>
-
-
-							<!-- Email id -->
-							<div class="col-md-6">
-								<label class="form-label">Email </label>
-								<input class="form-control" type="email" value="{{userconnect.email}}"  placeholder="Email" [(ngModel)]="registerForm.value.email" name="email" placeholder="{{userconnect.email}}">
-							</div>
-
-							<!-- Phone number -->
-							<div class="col-md-6">
-								<label class="form-label">Télephone</label>
-								<input type="text" class="form-control" value="{{userconnect.tel}}" placeholder="Phone number" [(ngModel)]="registerForm.value.telephone" name="telephone"  >
-							</div>
-
-							<!-- Location -->
-							<div class="col-md-6">
-								<label class="form-label">Age</label>
-								<input class="form-control" type="text" value="{{userconnect.age}}" [(ngModel)]="registerForm.value.age" name="age" placeholder="{{userconnect.age}}">
-							</div>
-							
-
-
-
-							<!-- Save button -->
-							<div class="d-sm-flex justify-content-end">
-								<input type="button" class="btn btn-primary mb-0" value="Modifier" (click)="register(registerForm)">
-							</div>
-						</form>
-					</div>
-					<!-- Card body END -->
+		<div class="col-9">
+			<div class="card bg-transparent border rounded-3">
+				<!-- Card header START -->
+				<div class="card-header bg-transparent border-bottom">
+					<h3 class="mb-0">Les Rendez-Vous</h3>
 				</div>
-				<!-- Edit profile END -->
+				<!-- Card header END -->
 
+				<!-- Card body START -->
+				<div class="card-body">
+
+					<!-- Student list table START -->
+		
+					<div class="table-responsive border-0 ">
+						<table class="table table-dark-gray align-middle p-4 mb-0 table-hover">
+							<!-- Table head -->
+							<thead>
+								<tr>
+									<th scope="col" class="border-0 rounded-start">Date</th>
+									<th scope="col" class="border-0">Description</th>
+									<th scope="col" class="border-0">Heure</th>
+									<th scope="col" class="border-0">Etat</th>
+									<th scope="col" class="border-0">Durée</th>
+									<th scope="col" class="border-0 rounded-end">Action</th>
+								</tr>
+							</thead>
+							<!-- Table body -->
+							<tbody>
+								<!-- Table item -->
+								<tr *ngFor="let rendv of lesrendezvous">
+									<!-- Date item -->
+									<td>{{rendv.date}}</td>
+
+									<!-- Title item -->
+									<td>
+										<h6 class="mt-2 mt-lg-0 mb-0"><a href="#">{{rendv.description}}</a></h6>
+									</td>
+
+									<!-- Payment method item -->
+									<td><img  class="h-40px" alt=""><span class="ms-2">{{rendv.heure}}</span></td>
+
+									<!-- Status item -->
+									<td>
+										<span class="badge bg-success bg-opacity-10 text-success" *ngIf="rendv.etat === 'Confirmer'">{{rendv.etat}}</span>
+										<span class="badge bg-danger bg-opacity-10 text-danger" *ngIf="rendv.etat === 'Annuler'">{{rendv.etat}}</span>
+										<span class="badge bg-danger bg-opacity-10 text-danger" *ngIf="rendv.etat === 'Expiré'">{{rendv.etat}}</span>
+									</td>
+									
+									
+									<!-- total item -->
+									<td>{{rendv.duree}}</td>
+
+									<!-- Action item -->
+									<td>
+										<a href="#" class="btn btn-primary-soft btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Download"><i class="bi bi-download"></i></a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		
+					<!-- Student list table END -->
+
+					<!-- Pagination START -->
+			
+					<!-- Pagination END -->
+				</div>
+				<!-- Card body START -->
 			</div>
-			<!-- Main content END -->
+		</div>
+
+
 		</div><!-- Row END -->
 	</div>
+	
 </section>
+
 <!-- =======================
 Page content END -->
 
@@ -197,3 +195,6 @@ Page content END -->
 
 <!-- Mirrored from eduport.webestica.com/instructor-edit-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:15:40 GMT -->
 </html>
+
+
+
