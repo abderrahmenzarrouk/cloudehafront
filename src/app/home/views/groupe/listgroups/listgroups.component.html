@@ -49,6 +49,24 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
+							<div class="d-flex align-items-center mt-2 mt-md-0">
+								<!-- <form class="row align-items-center justify-content-center my-4" style="margin-right: 50px;" [hidden]="!hiddenpost" [formGroup]="postForm" (ngSubmit)="CreerGroupe()">
+									<div class="col-12" >
+										<div class="bg-body shadow rounded-3 p-2">
+											<div class="input-group">
+												<input class="form-control border-0 me-1" type="email" placeholder="Votre annonce " formControlName="groupe">
+												<button type="submit" class="btn btn-blue mb-0 rounded-3" >Ajouter annonce</button>
+											</div>
+										</div>
+									</div>
+								</form> -->
+								<button  class="btn btn-blue mb-0 rounded-3"  (click)="voirForm()">Créer Mon Groupe</button>
+
+							</div>
+
+
+
+							
 	
 						</div>
 					</div>
@@ -112,10 +130,10 @@ Page content START -->
 				<div class="card bg-transparent border rounded-3">
 
 					<!-- Card body START -->
-					<div class="card-body p-3 p-md-4">
+					<div class="card-body p-3 p-md-4"  >
 						<div class="row g-4">
 							<!-- Card item START -->
-							<div class="col-sm-6 col-lg-4" *ngFor="let groupe of groupes">
+							<div class="col-sm-6 col-lg-4" *ngFor="let groupe of groupes"  [hidden]="!hiddenpostA" >
 								<div class="card shadow h-100" >
 									<div class="card-body pb-0">
 										<!-- Badge and favorite -->
@@ -124,15 +142,20 @@ Page content START -->
 					
 										</div>
 										<!-- Title -->
-										<h5 class="card-title fw-normal"><a href="#">Nom du Groupe : {{groupe.nom_Groupe}}</a></h5>
-										<p class="mb-2 text-truncate-2">Notre Sujet : {{groupe.sujet}}</p>
+										<h5 class="card-title fw-normal"><a href="#">{{groupe.nom_Groupe}}</a></h5>
+										<p class="mb-2 text-truncate-2">Sujet : {{groupe.sujet}}</p>
 										<!-- Rating star -->
 										<ul class="list-inline mb-0">
 											<li class="list-inline-item ms-2 h6 fw-light mb-0">Score : {{groupe.total_Score}}</li>
 										</ul>
 									</div>
                                     <div class="offset-3" style="margin-top: 10px;">
-                                        <button  class="btn btn-outline-primary mb-0" (click)="envoyerinvitation(groupe.idGroupe)">Intégrer</button>
+										<button class="btn btn-outline-primary btn-round me-1 mb-1 mb-md-0 bi bi-envelope-fill" (click)="envoyerinvitation(groupe.idGroupe)"  title="Envoyer Invitation"></button>
+
+										<button *ngIf="idCreateurGrp[0] == IDconn || idCreateurGrp[1] == IDconn || idCreateurGrp[2] == IDconn || idCreateurGrp[3] == IDconn || idCreateurGrp[4] == IDconn || idCreateurGrp[5] == IDconn  || idCreateurGrp[6] == IDconn"class="btn btn-primary btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier" (click)="ModifierGroupe(groupe)" (click)="voirFormEdit()">
+										  <i class="bi bi-pencil"></i>
+										</button>
+										
                                     </div>
                                     
 									<!-- Card footer -->
@@ -142,6 +165,92 @@ Page content START -->
 											<span class="h6 fw-light mb-0"><i class="far fa-clock text-danger me-2"></i>{{groupe.annee}}</span>
 											<span class="h6 fw-light mb-0"><i class="fas fa-table text-orange me-2"></i>{{groupe.statut}}</span>
 										</div>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-item mb-3" >
+								<h6 class="accordion-header font-base" id="heading-1">
+									<!-- <button class="accordion-button bg-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+										Credit or Debit Card 
+									</button> -->
+								</h6>
+								<div id="collapse-1" class="accordion-collapse collapse show" aria-labelledby="heading-1" data-bs-parent="#accordioncircle">
+									<!-- Accordion body -->
+									<div class="accordion-body">
+										<!-- Form START -->
+										<form class="row text-start g-3" [hidden]="!hiddenpostY"  [formGroup]="postForm" (ngSubmit)="CreerGroupe()">
+											<!-- Card number -->
+											<div class="col-12">
+												<label class="form-label">Nom Du Groupe : <span class="text-danger">*</span></label>
+												<div class="position-relative">
+													<input type="text" class="form-control" placeholder="Entrer Nom"  formControlName="nom_Groupe">
+													<img  class="w-40px position-absolute top-50 end-0 translate-middle-y me-2 d-none d-sm-block" alt="">
+												</div>	
+											</div>
+											<!-- Expiration Date -->
+											<div class="col-md-6">
+												<label class="form-label">Annee Scolaire : <span class="text-danger">*</span></label>
+												<div class="input-group">
+													<select class="form-select" formControlName="annee">
+														<option value="">Choisissez Votre Annee Scolaire</option>
+														<option *ngFor="let value of annees" [value]="value">{{ value }}</option>
+													</select>
+												</div>
+											</div>	
+											<!--Cvv code  -->
+											<div class="col-md-6">
+												<label class="form-label">Option : <span class="text-danger">*</span></label>
+												<select class="form-select" formControlName="option">
+													<option value="">Choisissez Votre Option</option>
+													<option *ngFor="let value of options" [value]="value">{{ value }}</option>
+												</select>
+											</div>
+											<!-- Card name -->
+											<div class="col-12">
+												<label class="form-label">Sujet : <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" aria-label="name of card holder" placeholder="Enter Sujet"    formControlName="sujet">
+											</div>
+											<button type="submit" class="btn btn-blue mb-0 rounded-3" >Créer Groupe</button>
+										</form>
+										<!-- Form END -->
+
+										<form class="row text-start g-3" [hidden]="!hiddenpostX"  [formGroup]="EditForm" (ngSubmit)="EditGroupe()">
+											<!-- Card number -->
+											<div class="col-12">
+												<label class="form-label">Nom Du Groupe : <span class="text-danger">*</span></label>
+												<div class="position-relative">
+													<input type="text" class="form-control" placeholder="Entrer Nom"  formControlName="nom_Groupe">
+													<img  class="w-40px position-absolute top-50 end-0 translate-middle-y me-2 d-none d-sm-block" alt="">
+												</div>	
+											</div>
+
+
+											<!-- Expiration Date -->
+											<div class="col-md-6">
+												<label class="form-label">Annee Scolaire : <span class="text-danger">*</span></label>
+												<div class="input-group">
+													<select class="form-select" formControlName="annee">
+														<option value="">Choisissez Votre Annee Scolaire</option>
+														<option *ngFor="let value of annees" [value]="value">{{ value }}</option>
+													</select>
+												</div>
+											</div>	
+											<!--Cvv code  -->
+											<div class="col-md-6">
+												<label class="form-label">Option : <span class="text-danger">*</span></label>
+												<select class="form-select" formControlName="option">
+													<option value="">Choisissez Votre Option</option>
+													<option *ngFor="let value of options" [value]="value">{{ value }}</option>
+												</select>
+											</div>
+											<!-- Card name -->
+											<div class="col-12">
+												<label class="form-label">Sujet : <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" aria-label="name of card holder" placeholder="Enter Sujet"    formControlName="sujet">
+											</div>
+											<button type="submit" class="btn btn-blue mb-0 rounded-3" >Metre à Jour Groupe</button>
+										</form>
+
 									</div>
 								</div>
 							</div>

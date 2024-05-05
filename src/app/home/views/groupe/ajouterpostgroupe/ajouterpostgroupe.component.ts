@@ -4,6 +4,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
+export class Post {
+  constructor(
+    public idPost: string,
+    public contenu: string,    
+  ) {}
+}
+
 @Component({
   selector: 'app-ajouterpostgroupe',
   templateUrl: './ajouterpostgroupe.component.html',
@@ -67,17 +75,20 @@ export class AjouterpostgroupeComponent {
             })
 
       }
-      hiddenpost : boolean = false;
-      shownpost: number[] = [];
-      voirpost(idpost:number){
-        const index = this.shownpost.indexOf(idpost);
-        if (index !== -1) {
-          this.shownpost.splice(index, 1); 
-        } else {
-          this.shownpost.push(idpost); 
-        }
-        
-      }
+// Declare variables
+hiddenCommentForm: number | null = null;
+hiddenEditForm: number | null = null;
+
+// Event handlers
+voirpost(postId: number) {
+  this.hiddenCommentForm = this.hiddenCommentForm === postId ? null : postId;
+}
+
+voirpost2(postId: number) {
+  this.hiddenEditForm = this.hiddenEditForm === postId ? null : postId;
+}
+
+      
 
       postForm = new FormGroup({
         post: new FormControl('', [Validators.required]),
@@ -133,4 +144,53 @@ export class AjouterpostgroupeComponent {
         );
 
       }
+
+
+      EditForm = new FormGroup({
+        idPost:new FormControl('', Validators.required),
+        contenu: new FormControl('', Validators.required),
+       
+      });
+
+      ModifierPost(post: Post)
+      {
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        this.EditForm.patchValue({
+          idPost: post.idPost,
+          contenu: post.contenu
+        });
+      }
+
+      EditPost(){
+        const payload: any = {
+          idPost: this.EditForm.value.idPost|| '',
+          contenu: this.EditForm.value.contenu|| '',
+          
+        };
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const url = 'http://localhost:8083/Post/updatePost';
+         this.http.put(url,this.EditForm.value,{ headers }).subscribe(
+      (response: any) => {
+        console.log(this.EditForm.value)
+        Swal.fire({
+          icon: 'success',
+          title: 'Post Mise à Jour Avec Succées',
+          text: 'Post Vous à été Mise à Jour avec Succées ',
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => {
+       //   this.router.navigate(['/list-groups']);
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        // Handle error response here
+      }
+    );
+      }
+
+
+
 }
