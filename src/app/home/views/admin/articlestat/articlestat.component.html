@@ -56,7 +56,7 @@
 					<ul class="nav collapse flex-column" id="collapsepage" data-bs-parent="#navbar-sidebar">
 						<li class="nav-item"> <a class="nav-link" routerLink="/reclamations-techniques" > Techniques</a></li>
 						<li class="nav-item"> <a class="nav-link" routerLink="/reclamations-educatives">Educatives</a></li>
-                        <li class="nav-item"> <a class="nav-link" routerLink="/reclamation-statistiques">Statistiques</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/reclamation-statistiques">Statistiques</a></li>
 						
 					</ul>
 				</li>
@@ -177,7 +177,11 @@
 					<!-- Toggler for menubar END -->
 
 					<!-- Topbar menu START -->
+					<div class="collapse navbar-collapse w-100" id="navbarTopContent">
+						<!-- Top search START -->
 
+						<!-- Top search END -->
+					</div>
 					<!-- Topbar menu END -->
 				</div>
 				<!-- Top bar left END -->
@@ -299,7 +303,7 @@
 										</div>
 									</div>
 								</li>
-                <li> <hr class="dropdown-divider"></li>
+                                <li> <hr class="dropdown-divider"></li>
 								<!-- Links -->
 							
 								<li><a class="dropdown-item bg-danger-soft-hover" (click)="logout()"><i class="bi bi-power fa-fw me-2"></i>Déconnecter</a></li>
@@ -316,83 +320,69 @@
 		</div>
 	</nav>
 	<!-- Top bar END -->
-    <div class="col-12">
+
+	<!-- Page main content START -->
+	<div class="col-12">
         <div class="row">
             <div class="col-5" style="margin-top: 10px;margin-left: 70px;">
                 <div class="card shadow h-100">
 
                     <!-- Card header -->
                     <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
-                        <h5 class="card-header-title">Réclamation selon leur Type</h5>
+                        <h5 class="card-header-title">Les Articles selon leur Type</h5>
                     </div>
 
                     <!-- Card body START -->
                     <div class="card-body p-4">
                         <!-- Chart -->
-                        <div class="col-sm-6 mx-auto">
+                        <div class="col-8 mx-auto">
                             <canvas id="myChart"></canvas>
                         </div>
 
-                        <!-- Content -->
-                        <ul class="list-group list-group-borderless mt-3">
-                            <li class="list-group-item"><i class="text-primary fas fa-circle me-2"></i>Les Réclamation Techniques : {{ reclamationstechniques.length }}</li>
-                            <li class="list-group-item"><i class="text-success fas fa-circle me-2"></i>Les Réclamation Educatives : {{ reclamationseducatives.length }}</li>
-                        </ul>
                     </div>
                 </div>
                 <!-- Card body END -->
             </div>
-            <div class="col-5" style="margin-top: 10px;margin-left: 10px;">
+
+			<div class="col-5" style="margin-top: 10px;margin-left: 70px;">
                 <div class="card shadow h-100">
 
                     <!-- Card header -->
                     <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
-                        <h5 class="card-header-title">Distribution des réclamations par mois</h5>
+                        <h5 class="card-header-title">Les Formations selon leur Mode</h5>
                     </div>
 
                     <!-- Card body START -->
                     <div class="card-body p-4">
                         <!-- Chart -->
-                        <div class="col-12">
-                            <canvas id="reclamationChart"></canvas>
+                        <div class="col-8 mx-auto">
+                            <canvas id="selonmode"></canvas>
                         </div>
-                        <ul class="list-group list-group-borderless mt-3">
-                            <li class="list-group-item">
-                                Le graphique ci-dessus illustre la distribution des réclamations par mois <br>
-                                En examinant ce graphique, il est possible de visualiser les tendances mensuelles des réclamations, ce qui peut aider à identifier les périodes de pic d'activité ou de problèmes récurrents
-                            </li>
-                            
-                        </ul>
-   
+
                     </div>
                 </div>
                 <!-- Card body END -->
             </div>
+         
         </div>
     </div>
-
-    <div class="col-12">
+	<div class="col-12">
         <div class="row">
             <div class="col-10" style="margin-top: 10px;margin-left: 80px;">
                 <div class="card shadow h-100">
 
                     <!-- Card header -->
                     <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
-                        <h5 class="card-header-title">Top Tuteurs avec le Plus de Réclamations Assignées</h5>
+                        <h5 class="card-header-title">Les meilleurs articles vendue</h5>
                     </div>
 
                     <!-- Card body START -->
                     <div class="card-body p-4">
                         <!-- Chart -->
                         <div class="col-8 offset-2">
-                            <canvas id="topTuteursChart"></canvas>
+                            <canvas id="topformation"></canvas>
                         </div>
-                        <ul class="list-group list-group-borderless mt-3">
-                            <li class="list-group-item">
-                                Voici les tuteurs les plus performants qui ont contribué à notre plateforme en aidant à résoudre efficacement les problèmes et les bugs rencontrés par notre système
-                            </li>
-                            
-                        </ul>
+
                         <!-- Content -->
    
                     </div>
@@ -402,37 +392,8 @@
  
         </div>
     </div>
-    <div class="col-12" style="margin-bottom: 40px;">
-        <div class="row">
-            <div class="col-10" style="margin-top: 10px;margin-left: 80px;">
-                <div class="card shadow h-100" >
+	<!-- Page main content END -->
 
-                    <!-- Card header -->
-                    <div class="card-header border-bottom d-flex justify-content-between align-items-center p-4" >
-                        <h5 class="card-header-title">Répartition des Réclamations par Spécialité</h5>
-                    </div>
-                <div class="row">
-                    <!-- Card body START -->
-                    <div class="card-body p-4 col-6" >
-                        <!-- Chart -->
-                        <div class="col-8 " style="height: 300px;width: 300px; margin-left: 100px;">
-                            <canvas id="reclamationsBySpecialityChart" ></canvas>
-                        </div>
-                        <!-- Content --> 
-                    </div>
-                    <div class="card-body p-4 col-6" style="margin-top: 60px;" >
-                        <!-- Chart -->
-                        
-						La répartition des réclamations par spécialité offre un aperçu précieux de la répartition du volume de réclamations entre différentes spécialités sur notre plateforme. Cette visualisation permet de mieux comprendre les domaines qui génèrent le plus grand nombre de réclamations, ce qui peut aider à identifier les tendances et à allouer les ressources de manière efficace pour résoudre les problèmes signalés par les utilisateurs.
-                        <!-- Content --> 
-                    </div>
-                </div>
-            </div>
-                <!-- Card body END -->
-            </div>
- 
-        </div>
-    </div>
 </div>
 <!-- Page content END -->
 

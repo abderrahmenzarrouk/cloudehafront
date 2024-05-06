@@ -30,6 +30,11 @@ import { ListinvitationComponent } from './home/views/groupe/listinvitation/list
 import { MongroupeComponent } from './home/views/groupe/mongroupe/mongroupe.component';
 import { AjouterpostgroupeComponent } from './home/views/groupe/ajouterpostgroupe/ajouterpostgroupe.component';
 import { RendezvousgroupeComponent } from './home/views/groupe/rendezvousgroupe/rendezvousgroupe.component';
+import { ArticlesComponent } from './home/views/admin/articles/articles.component';
+import { UpdatearticleComponent } from './home/views/admin/updatearticle/updatearticle.component';
+import { ShopComponent } from './home/views/etudiant/shop/shop.component';
+import { ListitemsComponent } from './home/views/etudiant/listitems/listitems.component';
+import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +61,12 @@ import { RendezvousgroupeComponent } from './home/views/groupe/rendezvousgroupe/
     ListinvitationComponent,
     MongroupeComponent,
     AjouterpostgroupeComponent,
-    RendezvousgroupeComponent
+    RendezvousgroupeComponent,
+    ArticlesComponent,
+    UpdatearticleComponent,
+    ShopComponent,
+    ListitemsComponent,
+    ArticlestatComponent
   ],
   imports: [
     BrowserModule,
