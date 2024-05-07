@@ -10,11 +10,12 @@ import { UserService } from 'src/app/home/services/user.service';
 export class ListtuteurComponent implements OnInit{
   constructor(private router: Router, private userService : UserService ){}
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
-  
+
   tuteurs: any[] = [];
   ngOnInit(): void {
     this.userconnect;
     this.getusers()
+   
   }
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
@@ -29,5 +30,10 @@ export class ListtuteurComponent implements OnInit{
       }
     );
   }
-
+  logout(){
+    localStorage.removeItem(JSON.parse(localStorage.getItem("userconnect")!));
+    localStorage.removeItem(localStorage.getItem('Token')!);
+    this.router.navigateByUrl('/login');
+    
+  }
 }

@@ -1,36 +1,33 @@
-import { ReseventsComponent } from './home/views/resevents/resevents/resevents.component';
-import { BackModule } from './home/views/back/back.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './home/views/register/register.component';
-import { WelcomepageComponent } from './home/views/welcomepage/welcomepage.component';
-import { LoginComponent } from './home/views/login/login.component';
-import { ProfileetudiantComponent } from './home/views/etudiant/profileetudiant/profileetudiant.component';
-import { ProfileadminComponent } from './home/views/admin/profileadmin/profileadmin.component';
 import { AjoutertuteurComponent } from './home/views/admin/ajoutertuteur/ajoutertuteur.component';
+import { ArticlesComponent } from './home/views/admin/articles/articles.component';
+import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat.component';
 import { ListtuteurComponent } from './home/views/admin/listtuteur/listtuteur.component';
-import { ReclamationformComponent } from './home/views/etudiant/reclamationform/reclamationform.component';
-import { ListreclamationsComponent } from './home/views/etudiant/listreclamations/listreclamations.component';
-import { ReclamationtechniquesComponent } from './home/views/admin/reclamationtechniques/reclamationtechniques.component';
+import { ProfileadminComponent } from './home/views/admin/profileadmin/profileadmin.component';
 import { ReclamationeducativesComponent } from './home/views/admin/reclamationeducatives/reclamationeducatives.component';
-import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
-import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
-import { BackComponent } from './home/views/back/back.component';
-import { NotFoundComponent } from './home/views/not-found/not-found.component';
-import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
+import { ReclamationtechniquesComponent } from './home/views/admin/reclamationtechniques/reclamationtechniques.component';
 import { StatistiquesComponent } from './home/views/admin/statistiques/statistiques.component';
 import { StatistiquesusersComponent } from './home/views/admin/statistiquesusers/statistiquesusers.component';
+import { UpdatearticleComponent } from './home/views/admin/updatearticle/updatearticle.component';
+import { ListitemsComponent } from './home/views/etudiant/listitems/listitems.component';
+import { ListreclamationsComponent } from './home/views/etudiant/listreclamations/listreclamations.component';
+import { ProfileetudiantComponent } from './home/views/etudiant/profileetudiant/profileetudiant.component';
+import { ReclamationformComponent } from './home/views/etudiant/reclamationform/reclamationform.component';
+import { ShopComponent } from './home/views/etudiant/shop/shop.component';
+import { ForgotpasswordComponent } from './home/views/forgotpassword/forgotpassword.component';
+import { AjouterpostgroupeComponent } from './home/views/groupe/ajouterpostgroupe/ajouterpostgroupe.component';
 import { ListgroupsComponent } from './home/views/groupe/listgroups/listgroups.component';
 import { ListinvitationComponent } from './home/views/groupe/listinvitation/listinvitation.component';
 import { MongroupeComponent } from './home/views/groupe/mongroupe/mongroupe.component';
-import { AjouterpostgroupeComponent } from './home/views/groupe/ajouterpostgroupe/ajouterpostgroupe.component';
 import { RendezvousgroupeComponent } from './home/views/groupe/rendezvousgroupe/rendezvousgroupe.component';
-import { ArticlesComponent } from './home/views/admin/articles/articles.component';
-import { UpdatearticleComponent } from './home/views/admin/updatearticle/updatearticle.component';
-import { ShopComponent } from './home/views/etudiant/shop/shop.component';
-import { ListitemsComponent } from './home/views/etudiant/listitems/listitems.component';
-import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat.component';
+import { LoginComponent } from './home/views/login/login.component';
+import { NotFoundComponent } from './home/views/not-found/not-found.component';
+import { RegisterComponent } from './home/views/register/register.component';
+import { ResetpasswordComponent } from './home/views/resetpassword/resetpassword.component';
+import { ProfiletuteurComponent } from './home/views/tuteur/profiletuteur/profiletuteur.component';
+import { ReclamationtuteurComponent } from './home/views/tuteur/reclamationtuteur/reclamationtuteur.component';
+import { WelcomepageComponent } from './home/views/welcomepage/welcomepage.component';
 
 
 const routes: Routes = [
@@ -56,9 +53,7 @@ const routes: Routes = [
   { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
   { path: 'forgot-password', component: ForgotpasswordComponent },
   { path: 'reset-password', component: ResetpasswordComponent },
-<<<<<<< HEAD
-  { path:"**",component: NotFoundComponent}
-=======
+
   { path: 'reclamation-statistiques', component: StatistiquesComponent },
   { path: 'user-statistiques', component: StatistiquesusersComponent },
   { path: 'list-groups', component: ListgroupsComponent },
@@ -71,8 +66,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent },
   { path: 'listitems', component: ListitemsComponent },
   { path: 'statartic', component: ArticlestatComponent },
->>>>>>> dd871745496cfcd72e40012a74ac9ecb91c9a5b0
- 
+  { path:"**",component: NotFoundComponent}
 ];
 
 @NgModule({

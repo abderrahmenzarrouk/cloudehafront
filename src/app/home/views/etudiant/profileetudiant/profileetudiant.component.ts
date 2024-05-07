@@ -17,6 +17,7 @@ import { ReclamationformComponent } from '../reclamationform/reclamationform.com
     constructor(private router: Router, private http: HttpClient){}
     ngOnInit(): void {
       this.userconnect;
+      this.getinvitation()
     }
     decodeBase64Image(base64Data: string): string {
       return 'data:image/png;base64,' + base64Data;
@@ -80,7 +81,24 @@ import { ReclamationformComponent } from '../reclamationform/reclamationform.com
         
       }
     }
-
+    logout(){
+      localStorage.removeItem(JSON.parse(localStorage.getItem("userconnect")!));
+      localStorage.removeItem(localStorage.getItem('Token')!);
+      this.router.navigateByUrl('/login');
+      
+    }
+    nombreinvi : number = 0;
+    invitations: any[] = [];
+    getinvitation(){
+      const url = 'http://localhost:8083/Invitation/listInvitationByUserId/'+this.userconnect.id;
+      const token = localStorage.getItem('Token');
+      const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+      this.http.get(url, { headers }).subscribe(
+        (response: any) => {
+          this.invitations=response
+          this.nombreinvi = this.invitations.length
+          })
+    }
  
  }
   

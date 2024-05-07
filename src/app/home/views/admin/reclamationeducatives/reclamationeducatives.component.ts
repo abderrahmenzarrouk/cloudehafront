@@ -28,5 +28,11 @@ export class ReclamationeducativesComponent {
        console.log(this.reclamations)
         })
       }
+      logout(){
+        localStorage.removeItem(JSON.parse(localStorage.getItem("userconnect")!));
+        localStorage.removeItem(localStorage.getItem('Token')!);
+        this.router.navigateByUrl('/login');
+        
+      }
 
 }
