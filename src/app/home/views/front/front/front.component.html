@@ -14,7 +14,7 @@
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
- 
+
 		const getPreferredTheme = () => {
 			if (storedTheme) {
 				return storedTheme
@@ -68,7 +68,7 @@
 
 			}
 		})
-		
+
 	</script>
 
 	<!-- Favicon -->
@@ -79,7 +79,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&amp;family=Roboto:wght@400;500;700&amp;display=swap">
 
-	
+
 
 </head>
 
@@ -135,9 +135,9 @@
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Course</a>
+								<a class="dropdown-item dropdown-toggle" routerLink="eligibility/eligibility">Eligibilities</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="course-categories.html">Course Categories</a></li>
+									<li> <a class="dropdown-item" routerLink="eligibility/eligibility"> Eligibilities</a></li>
 									<li> <hr class="dropdown-divider"></li>
 									<li> <a class="dropdown-item" href="course-grid.html">Course Grid Classic</a></li>
 									<li> <a class="dropdown-item" href="course-grid-2.html">Course Grid Minimal</a></li>
@@ -244,9 +244,9 @@
 						<ul class="dropdown-menu" aria-labelledby="accounntMenu">
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#"><i class="fas fa-user-tie fa-fw me-1"></i>Instructor</a>
+								<a class="dropdown-item dropdown-toggle" href="#"><i class="fas fa-user-tie fa-fw me-1"></i>Eligibilities</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="instructor-dashboard.html"><i class="bi bi-grid-fill fa-fw me-1"></i>Dashboard</a> </li>
+									<li> <a class="dropdown-item" routerLink="eligibility/eligibility"><i class="bi bi-grid-fill fa-fw me-1"></i>Eligibiility</a> </li>
 									<li> <a class="dropdown-item" href="instructor-manage-course.html"><i class="bi bi-basket-fill fa-fw me-1"></i>Courses</a> </li>
 									<li> <a class="dropdown-item" href="instructor-create-course.html"><i class="bi bi-file-earmark-plus-fill fa-fw me-1"></i>Create Course</a> </li>
 									<li> <a class="dropdown-item" href="course-added.html"><i class="bi bi-file-check-fill fa-fw me-1"></i>Course Added</a> </li>
@@ -272,13 +272,13 @@
 									<li> <a class="dropdown-item" href="student-bookmark.html"><i class="fas bi-cart-check-fill fa-fw me-1"></i>Wishlist</a> </li>
 								</ul>
 							</li>
-							
+
 							<li> <a class="dropdown-item" href="admin-dashboard.html"><i class="fas fa-user-cog fa-fw me-1"></i>Admin</a> </li>
 							<li> <hr class="dropdown-divider"></li>
 							<li> <a class="dropdown-item" href="instructor-edit-profile.html"><i class="fas fa-fw fa-edit me-1"></i>Edit Profile</a> </li>
 							<li> <a class="dropdown-item" href="instructor-setting.html"><i class="fas fa-fw fa-cog me-1"></i>Settings</a> </li>
 							<li> <a class="dropdown-item" href="instructor-delete-account.html"><i class="fas fa-fw fa-trash-alt me-1"></i>Delete Profile</a> </li>
-							
+
 							<li> <hr class="dropdown-divider"></li>
 							<!-- Dropdown Level -->
 							<li class="dropdown-submenu dropend">
@@ -311,6 +311,7 @@
 
 					<!-- Nav item 4 Component-->
 					<li class="nav-item"><a class="nav-link" routerLink="events/events">Nos Evenements</a></li>
+          <li class="nav-item"><a class="nav-link" routerLink="eligibility/eligibility">Eligibility</a></li>
 
 					<!-- Nav item 5 link-->
 					<li class="nav-item dropdown">
@@ -318,34 +319,34 @@
 							<i class="fas fa-ellipsis-h"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end min-w-auto" data-bs-popper="none">
-							<li> 
+							<li>
 								<a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
 									<i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
-								</a> 
+								</a>
 							</li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="docs/index.html" target="_blank">
 									<i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
-								</a> 
+								</a>
 							</li>
 							<li> <hr class="dropdown-divider"></li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="rtl/index.html" target="_blank">
 									<i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
-								</a> 
+								</a>
 							</li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
 									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Eduport!
-								</a> 
+								</a>
 							</li>
 							<li> <hr class="dropdown-divider"></li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="docs/alerts.html" target="_blank">
 									<i class="text-orange fa-fw bi bi-puzzle-fill me-2"></i>Components
-								</a> 
+								</a>
 							</li>
-							<li> 
+							<li>
                 <a class="dropdown-item" href="docs/snippets.html">
                   <i class="text-purple fa-fw bi bi-stickies-fill me-2"></i>Snippets
                 </a>
@@ -377,7 +378,7 @@
 					<i class="bi bi-cart3 fa-fw"></i>
 				</a>
 				<!-- badge -->
-				<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-dark mt-xl-2 ms-n1">2 
+				<span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-dark mt-xl-2 ms-n1">2
 					<span class="visually-hidden">unread messages</span>
 				</span>
 
@@ -507,7 +508,7 @@
 								</svg> Auto
 							</button>
 						</div>
-					</li> 
+					</li>
 					<!-- Dark mode options END-->
 				</ul>
 			</div>
@@ -569,7 +570,7 @@ Footer START -->
 							<li class="nav-item"><a class="nav-link" href="#">Career</a></li>
 						</ul>
 					</div>
-									
+
 					<!-- Link block -->
 					<div class="col-6 col-md-4">
 						<h5 class="mb-2 mb-md-4">Community</h5>
@@ -615,7 +616,7 @@ Footer START -->
 						<a href="#"> <img src="assets1/images/client/app-store.svg" alt="app-store"> </a>
 					</div>
 				</div> <!-- Row END -->
-			</div> 
+			</div>
 			<!-- Widget 3 END -->
 		</div><!-- Row END -->
 
