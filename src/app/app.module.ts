@@ -39,6 +39,7 @@ import { ClasseajoutComponent } from './home/views/admin/classeajout/classeajout
 import { AddclasseComponent } from './home/views/admin/addclasse/addclasse.component';
 import { StatclasseComponent } from './home/views/admin/statclasse/statclasse.component';
 import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
+import { BackModule } from './home/views/back/back.module';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    BackModule
   
     
     

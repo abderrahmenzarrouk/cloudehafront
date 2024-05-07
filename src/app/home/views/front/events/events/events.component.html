@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <!-- Boucle sur les événements -->
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let e of filterAvailableEvent()">
+            <!-- Vérifie si l'événement est disponible -->
+            <div *ngIf="e.isAvailable" class="card shadow-sm">
+                <!-- Image de l'événement -->
+                <img *ngIf="e.image" [src]="e.image" class="card-img-top" alt="Image de l'événement">
+                <div class="card-body">
+                    <!-- Titre de l'événement -->
+                    <h5 class="card-title">{{ e.nom_event }}</h5>
+                    <!-- Bouton Dropdown pour les détails -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Détails
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <!-- Bouton Partager sur Twitter -->
+                            <li><button class="dropdown-item" (click)="shareOnTwitter(e)">Partager sur Twitter</button></li>
+                            <!-- Input pour définir la quantité de réservations -->
+                            <li>
+                                <label for="quantityInput" class="dropdown-item">Quantité de places :</label>
+                                <input type="number" class="form-control" id="quantityInput" [(ngModel)]="e.reservationQuantity" name="quantityInput" min="1">
+                            </li>
+                            <!-- Bouton Réserver -->
+                            <button class="dropdown-item" (click)="reserveEvent(e.id, e.reservationQuantity)">Réserver</button>
+                        </ul>
+                    </div>
+                    <!-- Texte indiquant de scanner le QR code -->
+                    <p class="card-text small text-muted mt-2">Scannez le QR code pour plus d'infos sur l'événement</p>
+                </div>
+                <!-- Affichage du QR code (toujours visible mais en petit) -->
+                <img *ngIf="e.qrCodeUrl" [src]="e.qrCodeUrl" class="card-img-bottom img-thumbnail qr-code" alt="QR Code">
+            </div>
+        </div>
+    </div>
+</div>

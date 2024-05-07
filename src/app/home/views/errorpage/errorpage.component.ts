@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-errorpage',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./errorpage.component.css']
 })
 export class ErrorpageComponent {
+  constructor(private router: Router) {}
+  logout(){
+    localStorage.removeItem(JSON.parse(localStorage.getItem("userconnect")!));
+    localStorage.removeItem(localStorage.getItem('Token')!);
+    this.router.navigateByUrl('/login');
+    
+  }
 
 }

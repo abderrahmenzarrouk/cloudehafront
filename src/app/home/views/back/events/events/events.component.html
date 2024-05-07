@@ -1,0 +1,29 @@
+<div class="card-body px-0">
+    <!-- Boutons Ajouter et Stats -->
+    <div class="d-flex justify-content-end mb-3">
+        <a routerLink="/back/events/ajouterevent" class="btn btn-sm btn-primary me-2">Ajouter</a>
+    </div>
+    <!-- Liste des événements affichés horizontalement -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Boucle sur les événements -->
+        <div class="col" *ngFor="let event of events">
+            <div class="card bg-transparent border h-100 d-flex flex-column justify-content-center align-items-center"> 
+                <!-- Card body -->
+                <div class="card-body text-center">
+                    <!-- Nom de l'événement -->
+                    <h5 class="card-title mb-3">{{ event.nom_event }}</h5>
+                    <img [src]="event.image" alt="Event Image">
+                    <div [ngClass]="{'available': isEventAvailable(event.date_fin), 'unavailable': !isEventAvailable(event.date_fin)}">
+                        <p *ngIf="isEventAvailable(event.date_fin)" class="available">L'événement est disponible 😊</p>
+                        <p *ngIf="!isEventAvailable(event.date_fin)" class="unavailable">L'événement n'est plus disponible ☹️</p>
+                    </div>
+                    <!-- Affichage du nombre total des réservations -->
+                    <p>Total des réservations : {{ reservationsMap[event.id]?.length || 0 }}</p>
+                        <p *ngFor="let u of reservationsMap[event.id] ">{{ u.user.email }} </p>
+                    <!-- Bouton Supprimer -->
+                    <button (click)="deleteEvent(event.id)" class="btn btn-danger mt-3">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<form [formGroup]="annonceForm" (ngSubmit)="insertEvent()">
+  <div class="mb-3">
+    <label class="form-label">Nom de l'Événement</label>
+    <input type="text" class="form-control" formControlName="nom_event" placeholder="{{ randomEvent }}" required>
+    <div *ngIf="annonceForm.get('nom_event')?.invalid && (annonceForm.get('nom_event')?.dirty || annonceForm.get('nom_event')?.touched)" class="text-danger">
+      Nom de l'événement est requis.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date de début *</label>
+    <input type="datetime-local" class="form-control" formControlName="date_debut" required>
+    <div *ngIf="annonceForm.get('date_debut')?.invalid && (annonceForm.get('date_debut')?.dirty || annonceForm.get('date_debut')?.touched)" class="text-danger">
+      Date de début est requise.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Date de fin *</label>
+    <input type="datetime-local" class="form-control" formControlName="date_fin" required>
+    <div *ngIf="annonceForm.get('date_fin')?.invalid && (annonceForm.get('date_fin')?.dirty || annonceForm.get('date_fin')?.touched)" class="text-danger">
+      Date de fin est requise et doit être postérieure à la date de début.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Places disponibles *</label>
+    <input type="number" class="form-control" formControlName="placesDispo" required>
+    <div *ngIf="annonceForm.get('placesDispo')?.invalid && (annonceForm.get('placesDispo')?.dirty || annonceForm.get('placesDispo')?.touched)" class="text-danger">
+      Places disponibles sont requises et doivent être supérieures à zéro.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Places restantes *</label>
+    <input type="number" class="form-control" formControlName="placesRestants" required>
+    <div *ngIf="annonceForm.get('placesRestants')?.invalid && (annonceForm.get('placesRestants')?.dirty || annonceForm.get('placesRestants')?.touched)" class="text-danger">
+      Places restantes doivent être inférieures ou égales aux places disponibles.
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Image *</label>
+    <input type="file" class="form-control" formControlName="image" (change)="handleFileInput($event)" required>
+    <div *ngIf="annonceForm.get('image')?.invalid && (annonceForm.get('image')?.dirty || annonceForm.get('image')?.touched)" class="text-danger">
+      Image est requise.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Ajouter Événement</button>
+</form>

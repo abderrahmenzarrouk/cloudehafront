@@ -1,0 +1,15 @@
+.qr-code {
+    max-width: 100px; /* Taille maximale du QR code */
+}
+
+  
+  .available {
+    background-color: lightgreen;
+    color: green;
+  }
+  
+  .unavailable {
+    background-color: black;
+    color: blanchedalmond;
+  }
+  

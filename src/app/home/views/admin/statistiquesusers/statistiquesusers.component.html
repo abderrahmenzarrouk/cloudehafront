@@ -82,7 +82,17 @@
 				</li>
 				
 				<!-- Menu item 5 -->
-
+				<li class="nav-item">
+					<a class="nav-link" data-bs-toggle="collapse" href="#collapsepage1" role="button" aria-expanded="false" aria-controls="collapsepage">
+						<i class="bi bi-basket fa-fw me-2"></i>Les Evenements
+					</a>
+					<!-- Submenu -->
+					<ul class="nav collapse flex-column" id="collapsepage1" data-bs-parent="#navbar-sidebar">
+						<li class="nav-item"> <a class="nav-link" routerLink="/back/events/events" > Tous les evenements</a></li>
+						<li class="nav-item"> <a class="nav-link" routerLink="/back/events/ajouterevent">Ajouter evenement</a></li>
+						
+					</ul>
+				</li>
 				<!-- Menu item 6 -->
 				<li class="nav-item"> <a class="nav-link" routerLink="/user-statistiques"><i class="far fa-chart-bar fa-fw me-2"></i>Utilisateurs Statistiques</a></li>
 				<li class="nav-item"> <a class="nav-link" routerLink="/articles"><i class="far fa-clipboard fa-fw me-2"></i>Articles</a></li>
