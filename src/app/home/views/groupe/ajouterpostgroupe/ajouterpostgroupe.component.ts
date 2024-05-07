@@ -12,6 +12,14 @@ export class Post {
   ) {}
 }
 
+export class ResponsePost {
+  constructor(
+    public idResponse: string,
+       public contenu: string
+  
+  ) {}
+}
+
 @Component({
   selector: 'app-ajouterpostgroupe',
   templateUrl: './ajouterpostgroupe.component.html',
@@ -48,6 +56,10 @@ export class AjouterpostgroupeComponent {
             this.nombreinvi = this.invitations.length
             })
       }
+
+      
+
+
       mongroupe: any[] = [];
       idgroupe ?: number;
       listdemongroupe(){
@@ -61,7 +73,7 @@ export class AjouterpostgroupeComponent {
             this.listdesposts()
             })
       }
-
+      
       posts: any[] = [];
       listdesposts(){
         const url = 'http://localhost:8083/Post/retrieveAllPosts/'+this.idgroupe;
@@ -78,6 +90,7 @@ export class AjouterpostgroupeComponent {
 // Declare variables
 hiddenCommentForm: number | null = null;
 hiddenEditForm: number | null = null;
+hiddenEditFormComment: number | null = null;
 
 // Event handlers
 voirpost(postId: number) {
@@ -86,6 +99,10 @@ voirpost(postId: number) {
 
 voirpost2(postId: number) {
   this.hiddenEditForm = this.hiddenEditForm === postId ? null : postId;
+}
+
+voirpost3(idResponse: number) {
+  this.hiddenEditFormComment = this.hiddenEditForm === idResponse ? null : idResponse;
 }
 
       
@@ -136,6 +153,7 @@ voirpost2(postId: number) {
         this.http.get(url,{ headers }).subscribe(
           (response: any) => {
             this.commentaires = response;
+            console.log(this.commentaires[0].idResponse)
           },
           (error: any) => {
             console.error(error);
@@ -149,6 +167,7 @@ voirpost2(postId: number) {
       EditForm = new FormGroup({
         idPost:new FormControl('', Validators.required),
         contenu: new FormControl('', Validators.required),
+        idResponse:new FormControl('', Validators.required),
        
       });
 
@@ -164,6 +183,7 @@ voirpost2(postId: number) {
 
       EditPost(){
         const payload: any = {
+
           idPost: this.EditForm.value.idPost|| '',
           contenu: this.EditForm.value.contenu|| '',
           
@@ -192,5 +212,95 @@ voirpost2(postId: number) {
       }
 
 
+      EditPost2(){
+        const payload: any = {
+          idResponse: this.EditForm.value.idResponse|| '',
+          contenu: this.EditForm.value.contenu|| '',
+          
+        };
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const url = 'http://localhost:8083/ResponsePost/updateResponsePost';
+         this.http.put(url,this.EditForm.value,{ headers }).subscribe(
+      (response: any) => {
+        console.log(this.EditForm.value)
+        Swal.fire({
+          icon: 'success',
+          title: 'Commentaire Mise à Jour Avec Succées',
+          text: 'Commentaire Vous à été Mise à Jour avec Succées ',
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => {
+       //   this.router.navigate(['/list-groups']);
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        // Handle error response here
+      }
+    );
+      }
 
+
+
+     
+      ModifierResponsePost(commentaire: ResponsePost)
+      {
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        this.EditForm.patchValue({
+          idResponse: commentaire.idResponse,
+          contenu: commentaire.contenu
+        });
+        
+      }
+
+
+      DeleteCommentaire(id: number){
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const url = 'http://localhost:8083/ResponsePost/deleteResponse/'+ id;
+         this.http.delete(url,{ headers }).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Commentaire Supprimer Avec Succées',
+          text: 'Commentaire Vous à été Supprimer avec Succées ',
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => {
+          this.ngOnInit
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        // Handle error response here
+      }
+    );
+      }
+
+
+
+      Deletepost(id: number){
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const url = 'http://localhost:8083/Post/deletePost/'+ id;
+         this.http.delete(url,{ headers }).subscribe(
+      (response: any) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Post Supprimer Avec Succées',
+          text: 'Post à été Supprimer avec Succées ',
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => {
+          this.ngOnInit
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        // Handle error response here
+      }
+    );
+      }
 }

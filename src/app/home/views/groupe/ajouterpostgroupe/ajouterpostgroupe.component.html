@@ -120,9 +120,9 @@ Page content START -->
 							<button class="btn btn-sm btn-primary-soft mb-1 mb-sm-0" (click)="voirpost(post.idPost)">Commenter</button>
 							<a class="btn btn-sm btn-primary-soft mb-1 mb-sm-0" (click)="getcommentaires(post.idPost)">Afficher les commentaires</a>
 							<button (click)="ModifierPost(post); voirpost2(post.idPost)" class="btn btn-sm btn-success-soft mb-0" data-bs-toggle="modal" data-bs-target="#editQuestion">Edit</button>
-							<button class="btn btn-danger-soft btn-sm mb-0">Delete</button>
+							<button (click)="Deletepost(post.idPost)" class="btn btn-danger-soft btn-sm mb-0">Delete</button>
 					  
-							<form [hidden]="hiddenCommentForm !== post.idPost" [formGroup]="EditForm" (ngSubmit)="envoyerpost(post.idPost)">
+							<form [hidden]="hiddenCommentForm !== post.idPost" [formGroup]="postForm" (ngSubmit)="envoyerpost(post.idPost)">
 							  <div class="input-group mt-4">
 								<input class="form-control" type="text" placeholder="Votre commentaire" formControlName="post">
 								<button type="submit" class="btn btn-primary btn-round">
@@ -133,22 +133,29 @@ Page content START -->
 							</form>
 
 
-
 							<form [hidden]="hiddenEditForm !== post.idPost" [formGroup]="EditForm" (ngSubmit)="EditPost()">
 								<div class="input-group mt-4">
-								  <input class="form-control" type="text" placeholder="Votre commentaire" formControlName="contenu">
-								  <button type="submit" class="btn btn-primary btn-round">
-									  <i class="bi bi-envelope-fill"></i> 
-								  </button>
-								  
+									<input class="form-control" type="text" placeholder="Votre commentaire" formControlName="contenu">
+									<button type="submit" class="btn btn-primary btn-round">
+										<i class="bi bi-envelope-fill"></i> 
+									</button>
 								</div>
-							  </form>
+							</form>
+							
+							
+							
+
+
+							  
 					  
 							<div class="mt-4">
 							  <div *ngFor="let commentaire of commentaires" [hidden]="showncpmmentaire.indexOf(post.idPost) === -1" class="card">
+								
 								<div class="card-body">
 								  <h6 class="card-title">{{ commentaire.nom }} {{ commentaire.prenom }}</h6>
-								  <p class="card-text">{{ commentaire.contenu }}</p>
+								  <p class="card-text">Commentaire : {{ commentaire.contenu }}</p>
+								  <button  (click)="ModifierResponsePost(commentaire); voirpost3(commentaire.idResponse)"  class="btn btn-sm btn-success-soft mb-0" data-bs-toggle="modal" data-bs-target="#editQuestion">Edit</button>
+								  <button (click)="DeleteCommentaire(commentaire.idResponse)" class="btn btn-danger-soft btn-sm mb-0">Delete</button>
 								</div>
 							  </div>
 							</div>
