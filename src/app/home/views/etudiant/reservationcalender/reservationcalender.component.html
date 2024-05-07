@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from eduport.webestica.com/course-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:13:21 GMT -->
+<head>
+	<title>Eduport - LMS, Education and Course Theme</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Eduport- LMS, Education and Course Theme">
+
+
+</head>
+
+<body>
+
+<!-- Header START -->
+
+<!-- Header END -->
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+	<section class="pt-0">
+		<!-- Main banner background image -->
+		<div class="container-fluid px-0">
+			<div class="bg-blue h-100px h-md-200px rounded-0" style="background:url(assets/images/avatar/esprit-couv.jpg) no-repeat center center; background-size:cover;">
+			</div>
+		</div>
+		<div class="container mt-n4">
+			<div class="row">
+				<!-- Profile banner START -->
+				<div class="col-12">
+					<div class="card bg-transparent card-body p-0">
+						<div class="row d-flex justify-content-between">
+							<!-- Avatar -->
+							<div class="col-auto mt-4 mt-md-0">
+								<div class="avatar avatar-xxl mt-n3">
+									<img class="avatar-img rounded-circle border border-white border-3 shadow" [src]="decodeBase64Image(userconnect.image)" alt="">
+								</div>
+							</div>
+							<!-- Profile info -->
+							<div class="col d-md-flex justify-content-between align-items-center mt-4">
+								<div>
+									<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
+	
+								</div>
+								<!-- Button -->
+							</div>
+						</div>
+					</div>
+					<!-- Profile banner END -->
+	
+					<!-- Advanced filter responsive toggler START -->
+					<!-- Divider -->
+					<hr class="d-xl-none">
+					<div class="col-12 col-xl-3 d-flex justify-content-between align-items-center">
+						<a class="h6 mb-0 fw-bold d-xl-none" href="#">Menu</a>
+						<button class="btn btn-primary d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+							<i class="fas fa-sliders-h"></i>
+						</button>
+					</div>
+					<!-- Advanced filter responsive toggler END -->
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- =======================
+    
+Page Banner START -->
+
+<section class="pt-0">
+	<div class="container">
+		<div class="row">
+
+			<!-- Left sidebar START -->
+			<div class="col-xl-3">
+				<!-- Responsive offcanvas body START -->
+				<div class="offcanvas-xl offcanvas-end" tabindex="-1" id="offcanvasSidebar">
+					<!-- Offcanvas header -->
+					<div class="offcanvas-header bg-light">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel">My profile</h5>
+						<button  type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+					</div>
+					<!-- Offcanvas body -->
+					<div class="offcanvas-body p-3 p-xl-0">
+						<div class="bg-dark border rounded-3 pb-0 p-3 w-100">
+							<!-- Dashboard menu -->
+							<div class="list-group list-group-dark list-group-borderless">
+								<a class="list-group-item " routerLink="/profile-etudiant"><i class="bi bi-pencil-square fa-fw me-2"></i>Modifier Profile</a>
+								<a class="list-group-item" routerLink="/list-reclamation"><i class="bi bi-wallet2 fa-fw me-2"></i>Mes Réclamations</a>
+								<a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-groups"><i class="bi bi-card-checklist fa-fw me-2"></i>List des Groupes</a>
+								<a class="list-group-item " *ngIf="userconnect.userRole.role === 'Etudiant'" routerLink="/list-invitations"><i class="bi bi-card-checklist fa-fw me-2"></i>Mes invitation<span class="badge rounded-circle bg-primary text-white">{{invitations.length}}</span></a>
+								<a class="list-group-item " routerLink="/mongroupe"><i class="fas fa-user-graduate fa-fw me-1"></i>Mon Groupe</a>
+								<a class="list-group-item" routerLink="/groupepost"><i class="far fa-comment-dots fa-fw me-2"></i>Posts du Groupe</a>
+								<a class="list-group-item " routerLink="/rendezvousgroupe"><i class="far fa-clipboard fa-fw me-2"></i>Groupe Rendez-vous</a>
+								<a class="list-group-item " routerLink="/shop"><i class="bi bi-cart-check fa-fw me-2"></i>Boutique</a>
+								<a class="list-group-item " routerLink="/listitems"><i class="bi bi-basket fa-fw me-2"></i>Mes Achats</a>
+								<a class="list-group-item  " routerLink="/front/events/events"><i class="bi bi-mic fa-fw me-2"></i>Nos Evenements</a>
+								<a class="list-group-item active" routerLink="/classedispo"><i class="bi bi-wallet2 fa-fw me-2"></i>Réserver un classe</a>
+								<a class="list-group-item text-danger bg-danger-soft-hover"  (click)="logout()"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Déconnecter</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Responsive offcanvas body END -->
+			</div>
+			<!-- Left sidebar END -->
+
+			<!-- Main content START -->
+			<div class="col-9">
+				<div id="calendar-container">
+					<div id="cal-buttons">
+						<div id="cal-date-nav-buttons">
+							<button id="previous" mwlCalendarPreviousView [(viewDate)]="viewDate" [view]="view" [excludeDays]="[0]" >Précédent</button>
+							<button id="today" mwlCalendarToday [(viewDate)]="viewDate">Aujourd'hui</button>
+							<button id="next" mwlCalendarNextView [(viewDate)]="viewDate" [view]="view" [excludeDays]="[0]" >Suivant</button>
+						</div>
+						<div id="cal-date-field">{{ viewDate | calendarDate: (view + 'ViewTitle') : 'fr' }}</div>
+						<div id="cal-view-nav-buttons">
+							<button id="month" (click)="setView(CalendarView.Month)" [class.selected]="view == CalendarView.Month">Mois</button>
+							<button id="week" (click)="setView(CalendarView.Week)" [class.selected]="view == CalendarView.Week">Semaine</button>
+							<button id="day" (click)="setView(CalendarView.Day)" [class.selected]="view == CalendarView.Day">Jour</button>
+						</div>
+					</div>
+					<span [ngSwitch]="view">
+					  <mwl-calendar-month-view 
+						*ngSwitchCase="CalendarView.Month" 
+						[viewDate]="viewDate" 
+						[events]="events" 
+						[excludeDays]="[0]" 
+						[activeDayIsOpen]="activeDayIsOpen"
+						[refresh]="refresh" 
+						(dayClicked)="dayClicked($event.day)" 
+						(eventClicked)="eventClicked($event)"
+						(eventTimesChanged)="eventTimesChanged($event)"
+						locale="fr"
+					  ></mwl-calendar-month-view>
+				
+						<mwl-calendar-week-view 
+						*ngSwitchCase="CalendarView.Week" 
+						[viewDate]="viewDate" 
+						[events]="events" 
+						[excludeDays]="[0]" 
+						[dayStartHour]="9"
+						[dayEndHour]="23"
+						[refresh]="refresh"
+						(eventClicked)="eventClicked($event)"
+						(eventTimesChanged)="eventTimesChanged($event)"
+						locale="fr"
+						></mwl-calendar-week-view>
+				
+						<mwl-calendar-day-view 
+						*ngSwitchCase="CalendarView.Day" 
+						[viewDate]="viewDate" 
+						[events]="events" 
+						[dayStartHour]="9"
+						[dayEndHour]="23"
+						[refresh]="refresh"
+						(eventClicked)="eventClicked($event)"
+						(eventTimesChanged)="eventTimesChanged($event)"
+						 locale="fr"
+						></mwl-calendar-day-view>
+					</span>
+				</div>
+			</div>
+			<!-- Main content END -->
+		</div><!-- Row END -->
+	</div>
+</section>
+<!-- =======================
+Page Banner END -->
+
+<!-- =======================
+Page content START -->
+
+<!-- =======================
+Page content END -->
+
+<!-- =======================
+Newsletter START -->
+
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- =======================
+Footer START -->
+
+<!-- =======================
+Footer END -->
+
+<!-- Back to top -->
+<div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
+
+<!-- Bootstrap JS -->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="assets/vendor/choices/js/choices.min.js"></script>
+
+<!-- Template Functions -->
+<script src="assets/js/functions.js"></script>
+
+</body>
+
+<!-- Mirrored from eduport.webestica.com/course-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Nov 2023 13:13:21 GMT -->
+</html>

@@ -33,6 +33,9 @@ import { StatclasseComponent } from './home/views/admin/statclasse/statclasse.co
 import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
 import { AuthAdminGuard } from './guards/admin/adminguard.guard';
 import { AuthEtudiantGuard } from './guards/etudiant/etudiantguard.guard';
+import { ClssedispoComponent } from './home/views/etudiant/clssedispo/clssedispo.component';
+import { ReservationService } from './home/services/resevent.service';
+import { ReservationcalenderComponent } from './home/views/etudiant/reservationcalender/reservationcalender.component';
 
 
 const routes: Routes = [
@@ -68,6 +71,8 @@ const routes: Routes = [
   { path: 'ajouterclasse',canActivate:[AuthAdminGuard], component: ClasseajoutComponent },
   { path: 'addclasse',canActivate:[AuthAdminGuard], component: AddclasseComponent },
   { path: 'statclass',canActivate:[AuthAdminGuard], component: StatclasseComponent },
+  { path: 'classedispo', component: ClssedispoComponent },
+  { path: 'classerevervation', component: ReservationcalenderComponent },
   { path: 'error', component: ErrorpageComponent },
   {path:"back",canActivate:[AuthAdminGuard],loadChildren:()=>
 

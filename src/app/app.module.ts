@@ -40,7 +40,24 @@ import { AddclasseComponent } from './home/views/admin/addclasse/addclasse.compo
 import { StatclasseComponent } from './home/views/admin/statclasse/statclasse.component';
 import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
 import { BackModule } from './home/views/back/back.module';
+import { ClssedispoComponent } from './home/views/etudiant/clssedispo/clssedispo.component';
+import { CalendarDateFormatter, CalendarModule, CalendarNativeDateFormatter, DateAdapter, DateFormatterParams } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { ReservationcalenderComponent } from './home/views/etudiant/reservationcalender/reservationcalender.component';
+import localeFr from '@angular/common/locales/fr';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeFr,'fr');
 
+class CustomDateFormatter extends CalendarNativeDateFormatter{
+   public override dayViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat(locale,{hour:'numeric',minute:'numeric'}).format(date);
+   }
+   public override weekViewHour({ date, locale }: DateFormatterParams): string {
+    return new Intl.DateTimeFormat(locale,{hour:'numeric',minute:'numeric'}).format(date);
+    
+  }   
+  
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +92,9 @@ import { BackModule } from './home/views/back/back.module';
     ClasseajoutComponent,
     AddclasseComponent,
     StatclasseComponent,
-    ErrorpageComponent
+    ErrorpageComponent,
+    ClssedispoComponent,
+    ReservationcalenderComponent
   ],
   imports: [
     BrowserModule,
@@ -85,14 +104,15 @@ import { BackModule } from './home/views/back/back.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    BackModule
+    BackModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   
     
     
   
     
   ],
-  providers: [],
+  providers: [{provide: CalendarDateFormatter,useClass :CustomDateFormatter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
