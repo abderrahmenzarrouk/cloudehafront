@@ -27,36 +27,48 @@ import { UpdatearticleComponent } from './home/views/admin/updatearticle/updatea
 import { ShopComponent } from './home/views/etudiant/shop/shop.component';
 import { ListitemsComponent } from './home/views/etudiant/listitems/listitems.component';
 import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat.component';
+import { ClasseajoutComponent } from './home/views/admin/classeajout/classeajout.component';
+import { AddclasseComponent } from './home/views/admin/addclasse/addclasse.component';
+import { StatclasseComponent } from './home/views/admin/statclasse/statclasse.component';
+import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
+import { AuthAdminGuard } from './guards/admin/adminguard.guard';
+import { AuthEtudiantGuard } from './guards/etudiant/etudiantguard.guard';
+
 
 const routes: Routes = [
   {path: '' , redirectTo: 'register', pathMatch:"full"},
   { path: 'register', component: RegisterComponent },
   { path: 'verifiermail', component: WelcomepageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile-etudiant', component: ProfileetudiantComponent },
-  { path: 'profile-admin', component: ProfileadminComponent },
-  { path: 'ajouter-tuteur', component: AjoutertuteurComponent },
-  { path: 'list-tuteur', component: ListtuteurComponent },
-  { path: 'reclamation', component: ReclamationformComponent },
-  { path: 'list-reclamation', component: ListreclamationsComponent },
-  { path: 'reclamations-techniques', component: ReclamationtechniquesComponent },
-  { path: 'reclamations-educatives', component: ReclamationeducativesComponent },
-  { path: 'profile-tuteur', component: ProfiletuteurComponent },
-  { path: 'reclamation-tuteur', component: ReclamationtuteurComponent },
+  { path: 'profile-etudiant',canActivate:[AuthEtudiantGuard], component: ProfileetudiantComponent },
+  { path: 'profile-admin',canActivate:[AuthAdminGuard], component: ProfileadminComponent },
+  { path: 'ajouter-tuteur',canActivate:[AuthAdminGuard], component: AjoutertuteurComponent },
+  { path: 'list-tuteur',canActivate:[AuthAdminGuard], component: ListtuteurComponent },
+  { path: 'reclamation',canActivate:[AuthEtudiantGuard], component: ReclamationformComponent },
+  { path: 'list-reclamation',canActivate:[AuthEtudiantGuard], component: ListreclamationsComponent },
+  { path: 'reclamations-techniques',canActivate:[AuthAdminGuard], component: ReclamationtechniquesComponent },
+  { path: 'reclamations-educatives',canActivate:[AuthAdminGuard], component: ReclamationeducativesComponent },
+  { path: 'profile-tuteur',canActivate:[AuthEtudiantGuard], component: ProfiletuteurComponent },
+  { path: 'reclamation-tuteur',canActivate:[AuthEtudiantGuard], component: ReclamationtuteurComponent },
   { path: 'forgot-password', component: ForgotpasswordComponent },
   { path: 'reset-password', component: ResetpasswordComponent },
-  { path: 'reclamation-statistiques', component: StatistiquesComponent },
-  { path: 'user-statistiques', component: StatistiquesusersComponent },
-  { path: 'list-groups', component: ListgroupsComponent },
-  { path: 'list-invitations', component: ListinvitationComponent },
-  { path: 'mongroupe', component: MongroupeComponent },
-  { path: 'groupepost', component: AjouterpostgroupeComponent },
-  { path: 'rendezvousgroupe', component: RendezvousgroupeComponent },
-  { path: 'articles', component: ArticlesComponent },
-  { path: 'update-articles/:id', component: UpdatearticleComponent },
-  { path: 'shop', component: ShopComponent },
-  { path: 'listitems', component: ListitemsComponent },
-  { path: 'statartic', component: ArticlestatComponent },
+  { path: 'reclamation-statistiques',canActivate:[AuthAdminGuard], component: StatistiquesComponent },
+  { path: 'user-statistiques',canActivate:[AuthAdminGuard], component: StatistiquesusersComponent },
+  { path: 'list-groups',canActivate:[AuthEtudiantGuard], component: ListgroupsComponent },
+  { path: 'list-invitations',canActivate:[AuthEtudiantGuard], component: ListinvitationComponent },
+  { path: 'mongroupe',canActivate:[AuthEtudiantGuard], component: MongroupeComponent },
+  { path: 'groupepost',canActivate:[AuthEtudiantGuard], component: AjouterpostgroupeComponent },
+  { path: 'rendezvousgroupe',canActivate:[AuthEtudiantGuard], component: RendezvousgroupeComponent },
+  { path: 'articles',canActivate:[AuthAdminGuard], component: ArticlesComponent },
+  { path: 'update-articles/:id',canActivate:[AuthAdminGuard], component: UpdatearticleComponent },
+  { path: 'shop',canActivate:[AuthEtudiantGuard], component: ShopComponent },
+  { path: 'listitems',canActivate:[AuthEtudiantGuard], component: ListitemsComponent },
+  { path: 'statartic',canActivate:[AuthAdminGuard], component: ArticlestatComponent },
+  { path: 'ajouterclasse',canActivate:[AuthAdminGuard], component: ClasseajoutComponent },
+  { path: 'addclasse',canActivate:[AuthAdminGuard], component: AddclasseComponent },
+  { path: 'statclass',canActivate:[AuthAdminGuard], component: StatclasseComponent },
+  { path: 'error', component: ErrorpageComponent },
+
  
 ];
 

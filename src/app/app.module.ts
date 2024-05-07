@@ -35,6 +35,10 @@ import { UpdatearticleComponent } from './home/views/admin/updatearticle/updatea
 import { ShopComponent } from './home/views/etudiant/shop/shop.component';
 import { ListitemsComponent } from './home/views/etudiant/listitems/listitems.component';
 import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat.component';
+import { ClasseajoutComponent } from './home/views/admin/classeajout/classeajout.component';
+import { AddclasseComponent } from './home/views/admin/addclasse/addclasse.component';
+import { StatclasseComponent } from './home/views/admin/statclasse/statclasse.component';
+import { ErrorpageComponent } from './home/views/errorpage/errorpage.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +70,11 @@ import { ArticlestatComponent } from './home/views/admin/articlestat/articlestat
     UpdatearticleComponent,
     ShopComponent,
     ListitemsComponent,
-    ArticlestatComponent
+    ArticlestatComponent,
+    ClasseajoutComponent,
+    AddclasseComponent,
+    StatclasseComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
