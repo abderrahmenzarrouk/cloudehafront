@@ -49,6 +49,16 @@ Page Banner START -->
 								<h1 class="my-1 fs-4">{{userconnect.nom }} {{userconnect.prenom}} <i class="bi bi-patch-check-fill text-info small"></i></h1>
 
 							</div>
+							<form class="row align-items-center justify-content-center my-4" style="margin-right: 50px;" [hidden]="!hiddenpost" [formGroup]="postFormX" (ngSubmit)="envoyerpost()">
+								<div class="col-12" >
+									<div class="bg-body shadow rounded-3 p-2">
+										<div class="input-group">
+											<input class="form-control border-0 me-1" type="email" placeholder="Votre Note /20 " formControlName="points">
+											<button type="submit" class="btn btn-blue mb-0 rounded-3" >Affecter Note</button>
+										</div>
+									</div>
+								</div>
+							</form>
 							
 							<button type="submit" class="btn btn-blue mb-0 rounded-3" (click)="voirForm()">Créer Rendez-vous</button>
 					
@@ -172,7 +182,7 @@ Page content START -->
 										
 									</td>
 									<td>
-										<button (click)="ModifierRdv(rendv)" (click)="voirFormEdit()" class="btn btn-primary btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"><i class="bi bi-pencil"></i></button>
+										<button (click)="ModifierRdv(rendv)" (click)="voirFormEdit(rendv.idRdv)"  class="btn btn-primary btn-round me-1 mb-1 mb-md-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"><i class="bi bi-pencil"></i></button>
 
 									</td>
 								</tr>

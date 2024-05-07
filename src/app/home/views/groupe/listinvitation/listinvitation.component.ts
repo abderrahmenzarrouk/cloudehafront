@@ -45,6 +45,15 @@ export class ListinvitationComponent {
         const addURL = 'http://localhost:8083/Groupe/AssignUserTOGroupe/'+ inviId ;
         this.http.post(addURL, null,{ headers }).subscribe((results) =>{
           this.ngOnInit()
+          Swal.fire({
+            icon: 'success',
+            title: 'Invitation Accepter Avec Succées',
+            text: 'Un Membre est Ajouté avec Succées ',
+            showConfirmButton: false,
+            timer: 2500
+          }).then(() => {
+            this.ngOnInit
+          });
         })
     }
     Refuser(idinvi: number) {
@@ -54,7 +63,15 @@ export class ListinvitationComponent {
       this.http.delete(deleteURL,{ headers }).subscribe((results) =>{
         this.router.navigateByUrl('/groupes');
         this.ngOnInit();
-       
+        Swal.fire({
+          icon: 'success',
+          title: 'Invitation Refuser Avec Succées',
+          text: 'Un Etudiant est Refuser avec Succées ',
+          showConfirmButton: false,
+          timer: 2500
+        }).then(() => {
+          this.ngOnInit
+        });
         
       })
     }

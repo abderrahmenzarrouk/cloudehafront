@@ -189,7 +189,7 @@ console.error(error);
             for (let i = 0; i < this.groupes.length && i < 6; i++) {
               this.idCreateurGrp[i] = this.groupes[i].nom_Tuteur;
               console.log("hedha l id createur",this.idCreateurGrp[i])
-              console.log("hedha id user conn ", this.userconnect.id)
+              console.log("hedha id user conn ", this.userconnect)
             }
             
             console.log(this.groupes);

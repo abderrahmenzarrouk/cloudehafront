@@ -31,13 +31,17 @@ export class RendezvousgroupeComponent {
   userconnect = JSON.parse(localStorage.getItem("userconnect")!);
   ngOnInit(): void {
     this.userconnect;
+    console.log("hedha el id " + this.userconnect.id);
+    console.log("hedha e role " + this.RoleTest);
+   this.getRole()
+   console.log("hedha e role " + this.Role);
     this.listdemongroupe()
   }
   decodeBase64Image(base64Data: string): string {
     return 'data:image/png;base64,' + base64Data;
   }
   invitations: any[] = [];
-
+   
   hiddenpostA : boolean = true;
   
   voirForm(){
@@ -49,13 +53,17 @@ export class RendezvousgroupeComponent {
 
   hiddenpostY : boolean = false;
   hiddenpostX : boolean = false;
-  voirFormEdit(){
+
+  voirFormEdit(id : string){
+    if (this.RoleTest == "Etudiant"){
     this.hiddenpostX = true; // Afficher le formulaire 2
     this.hiddenpostY = false; // Masquer le formulaire 1
     this.hiddenpostA = false; // Masquer la table
   }
-
-
+   else {
+    this.voirpost(id)
+   }
+}
   
 
   postForm = new FormGroup({
@@ -65,11 +73,34 @@ export class RendezvousgroupeComponent {
     duree: new FormControl('', [Validators.required])
   });
 
+
+  Role: String = ""
+  RoleTest: String = "Tuteur"
+
+  getRole() {
+    const token = localStorage.getItem('Token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    this.http.get<any>('http://localhost:8083/Groupe/getrole/' + this.userconnect.id, { headers }).subscribe(
+      response => {
+        console.log("response", response);
+        this.Role = response
+        
+        
+      },
+      error => {
+        console.error('Erreur lors de la récupération des rendez-vous : ', error);
+      }
+    );
+  }
+
+
+
   IdAdmin = 0  
 
   getAdmin() {
-    
-    this.http.get<any>('http://localhost:8083/Groupe/nomAdmin/' + this.idgroupe).subscribe(
+    const token = localStorage.getItem('Token');
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    this.http.get<any>('http://localhost:8083/Groupe/nomAdmin/' + this.idgroupe, { headers }).subscribe(
       response => {
         console.log("response", response);
         this.IdAdmin = response;
@@ -82,7 +113,7 @@ export class RendezvousgroupeComponent {
     );
   }
 
-
+  
   CreerRdv(){
     const payload: any = {
       description : this.postForm.value.description|| '',
@@ -115,7 +146,7 @@ export class RendezvousgroupeComponent {
 
   }
 
-
+  
   
 
   
@@ -140,7 +171,7 @@ export class RendezvousgroupeComponent {
       );
   }
 
-
+ 
 
   getHeuresDispoEdit() {
     const token = localStorage.getItem('Token');
@@ -166,6 +197,7 @@ export class RendezvousgroupeComponent {
       }
       mongroupe: any[] = [];
       idgroupe ?: number;
+       
       listdemongroupe(){
         const url = 'http://localhost:8083/Groupe/getotherMembers/'+this.userconnect.id;
         const token = localStorage.getItem('Token');
@@ -272,5 +304,51 @@ export class RendezvousgroupeComponent {
       }
     );
       }
+
+
+
+      hiddenpost : boolean = false;
+      voirpost(id : string){
+        if(this.hiddenpost == false){
+          this.hiddenpost=true
+        }else{this.hiddenpost=false}
+        localStorage.setItem('idUPD',id)
+        console.log("hedha howa lmatloub "+ id)
+      }
+
+
+      postFormX = new FormGroup({
+        points: new FormControl('', [Validators.required]),
+      });
+      envoyerpost(){
+        var x = localStorage.getItem('idUPD')
+        console.log("hedha howa id li ech updatih", x)
+        const payload: any = {
+          points: this.postFormX.value.points || '',
+        };
+        const token = localStorage.getItem('Token');
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+        const url = 'http://localhost:8083/RendezVous/addPoints/'+x +'/' + this.postFormX.value.points;
+        this.http.post(url, null,{ headers }).subscribe(
+          (response: any) => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Note Affecter',
+              text: 'Votre Note a été Affecter avec Succées au Rendez Vous du groupe',
+              showConfirmButton: false,
+              timer: 2500
+            }).then(() => {
+              this.router.navigate(['/groupepost']);
+              
+            });
+          },
+          (error: any) => {
+            console.error(error);
+            // Handle error response here
+          }
+        );
+
+      }
+
 
 }
