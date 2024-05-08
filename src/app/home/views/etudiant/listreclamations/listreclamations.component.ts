@@ -21,7 +21,7 @@ export class ListreclamationsComponent implements OnInit {
   getreclamtions(){
     const requestData = {
       userid:  parseInt(this.userconnect.id),
-      
+
     };
     const url = 'http://localhost:8083/api/v1/reclamations/get-by-user';
     const token = localStorage.getItem('Token');
@@ -34,4 +34,6 @@ export class ListreclamationsComponent implements OnInit {
       }
 }
 
+
+//test
 
